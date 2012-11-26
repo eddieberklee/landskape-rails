@@ -5,6 +5,7 @@ Ptast::Application.routes.draw do
   resources :logins
   root :to => "logins#index"
   resources :photos
+  resources :maps
 
   # match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
 

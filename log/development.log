@@ -59350,3 +59350,23 @@ Served asset /forest_path.jpg - 200 OK (17ms)
 
 Started GET "/assets/lake_fall.jpg" for 127.0.0.1 at 2012-11-25 23:00:32 -0800
 Served asset /lake_fall.jpg - 200 OK (8ms)
+
+
+Started GET "/assets/heart.png" for 127.0.0.1 at 2012-11-25 23:09:48 -0800
+Served asset /heart.png - 200 OK (4ms)
+
+
+Started GET "/assets/heart_unselected.png" for 127.0.0.1 at 2012-11-25 23:09:49 -0800
+Served asset /heart_unselected.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/heart_unselected.png" for 127.0.0.1 at 2012-11-25 23:09:51 -0800
+Served asset /heart_unselected.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/heart_unselected.png" for 127.0.0.1 at 2012-11-25 23:09:53 -0800
+Served asset /heart_unselected.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/heart_unselected.png" for 127.0.0.1 at 2012-11-25 23:09:54 -0800
+Served asset /heart_unselected.png - 304 Not Modified (0ms)
