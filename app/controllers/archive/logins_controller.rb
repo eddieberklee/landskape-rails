@@ -2,6 +2,7 @@ class LoginsController < ActionController::Base
   protect_from_forgery
 
   def show
+    id = params[:id]
   end
 
   def index

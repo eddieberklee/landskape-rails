@@ -1,19 +1,13 @@
 Ptast::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+
   resources :logins
   root :to => "logins#index"
-  resources :semesters do
-    resources :courses
-    resources :teachers
-    resources :ptainstructors
-    resources :students do
-      resources :enrollments
-    end
-    collection do
-    end
-  end
-  match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
+  resources :photos
+
+  # match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
+
   #resources :teachers
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
