@@ -1,0 +1,107 @@
+-# This file is app/views/logins/index.html.haml
+!!! 5
+
+%html
+  %head
+    %title
+      Logins
+    = stylesheet_link_tag("frontpage")
+    = javascript_include_tag("application")
+  %body
+    = #render :partial => "partials/topbar"
+    %div#container
+
+      .vspace30
+      %div.hero-unit.section#login{:style=>'padding-bottom:5px;'}
+        %h1
+          JAS Administration
+        %h2
+          #{@banner_message}
+        .vspace20
+        = form_tag semesters_path, :method => :get, :id=> 'login_form' do
+          %label Username:
+          %input{:type => "text", :name => "username", :class => "text"}
+          %br
+          %label Password:
+          %div
+          %input{:type => "password", :name => "password"}
+          .vspace20
+          = submit_tag 'Login', :id => 'login_submit', :class => 'btn btn-info'
+      .vspace20
+      %div.hero-unit.section
+        %h4{:style=>"float:left;"}
+          While in development, click the button below to bypass login.
+        %a.btn.btn-info{:href => "#{semesters_path}", :style=>"float:left;margin-left:25px;position:relative;top:2px;"}
+          Semesters &raquo;
+        .vspace10
+        .vspace30
+
+    /
+      %div.hero-unit.section
+        %h1
+          PTA Scheduler
+        %p
+          This is an app being built for Jefferson Elementary School to coordinate/manage their afterschool program.
+          %br
+          %br
+          %div.align-right
+            %a.btn.btn-large.btn-warning{:href=>"http://cs169-fa12-project.herokuapp.com/projects/9"}
+              Project Description &raquo;
+            %a.btn.btn-large.btn-info{:href=>"https://github.com/eddieberklee/cs169-group29"}
+              Github &raquo;
+            %a.btn.btn-large.btn-inverse{:href=>"https://www.pivotaltracker.com/projects/650345"}
+              Pivotal Tracker &raquo;
+
+      %div.hero-unit.section
+        %h1
+          Progress
+        %p
+          Deadlines for different parts of our project.
+          %br
+          %br
+          %div.bar-titles
+          %div.bar-object.progress.progress-striped.active
+            %div.bar{:style=>"width: 12.5%"}
+          %div.bar-dates
+            %span
+              10/14/12
+            %span
+              10/21/12
+            %span
+              10/28/12
+            %span
+              11/04/12
+            %span
+              11/11/12
+            %span
+              11/18/12
+            %span
+              11/28/12
+            %span
+              12/05/12
+      %div.hero-unit.section
+        %h1
+          Team
+        %p
+          %ul
+            %li
+              %h3
+                Lauren Fratamico
+            %li
+              %h3
+                Eric Horton
+            %li
+              %h3
+                Ray Kyaw
+            %li
+              %h3
+                Edward Lee
+            %li
+              %h3
+                Brian Prike
+    :javascript
+      // $("input[type='password']").keyup(function() {
+      //   $("h1").text($(this).attr('value').length);
+      // });
+
+

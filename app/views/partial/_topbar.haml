@@ -1,0 +1,23 @@
+.vspace20
+.navbar
+  .navbar-inner
+    %ul.nav
+      %a.brand{:href=>"#{semesters_path}"}
+        JAS Administration
+      %li#navbar-semester
+        %a{:href=>"#{semester_path(semester)}"}
+          #{semester.name}
+      %li#navbar-courses
+        %a{:href=>"#{semester_courses_path(semester)}"}
+          Classes
+      %li#navbar-ptainstructors
+        %a{:href=>"#{semester_ptainstructors_path(semester)}"}
+          PTA Instructors
+      %li#navbar-students
+        %a{:href=>"#{semester_students_path(semester)}"}
+          Students
+      %li#navbar-teachers
+        %a{:href=>"#{semester_teachers_path(semester)}"}
+          Teachers/Classrooms
+
+.vspace10

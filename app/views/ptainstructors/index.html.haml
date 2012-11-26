@@ -1,0 +1,54 @@
+-# This file is app/views/ptainstructors/index.html.haml
+!!! 5
+
+%html{:lang => "en"}
+  %head
+    %title
+      Session List
+    = stylesheet_link_tag("frontpage")
+    = javascript_include_tag("application")
+  %body
+    %div#container
+      = render :partial => "partial/topbar", :locals => {:semester => @semester}
+      = render :partial => "partial/ptainstructor_error"
+      %h1{:style=>"text-align:center;"}
+        PTA Instructors
+      = link_to "+ Add New PTA Instructor", new_semester_ptainstructor_path(@semester), :style=>"float:right;"
+      .clear
+      .vspace10
+      %table.ptainstructors.table-striped.table-bordered.table-hover{:style=>"width:100%;text-align:center;"}
+        %thead
+          %tr
+            %td
+              Name
+            %td
+              Email
+            %td
+              Phone
+            %td
+            %td
+        %tbody
+          - @ptainstructors.each do |ptainstructor|
+            %tr
+              %td.cell_center.ptainstructor-name
+                = ptainstructor.name
+              %td.cell_center.ptainstructor-email
+                = ptainstructor.email
+              %td.cell_center.ptainstructor-phone
+                = ptainstructor.phone
+              %td.cell_center.ptainstructor-edit
+                %a.btn.btn-warning.edit-button-icon{:href => "#{edit_semester_ptainstructor_path(@semester,ptainstructor)}"}
+                  Edit
+                  %i.icon-pencil.icon-white
+              %td.cell_center.ptainstructor-delete
+                - if ptainstructor.can_be_deleted?
+                  = button_to "Delete", semester_ptainstructor_path(@semester, ptainstructor), :method => :delete, :class => "btn btn-danger"
+                - else
+                  = "Referenced"       
+      .vspace10
+
+    :javascript
+      $(function() {
+        $("#navbar-ptainstructors").addClass('active');
+        $("span.referenced-tooltip").tooltip();
+      });
