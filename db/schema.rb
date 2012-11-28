@@ -13,97 +13,33 @@
 
 ActiveRecord::Schema.define(:version => 20121125012720) do
 
-  create_table "courses", :force => true do |t|
-    t.text    "name"
-    t.text    "description"
-    t.boolean "sunday"
-    t.boolean "monday"
-    t.boolean "tuesday"
-    t.boolean "wednesday"
-    t.boolean "thursday"
-    t.boolean "friday"
-    t.boolean "saturday"
-    t.text    "start_time"
-    t.text    "end_time"
-    t.text    "grade_range"
-    t.integer "class_min"
-    t.integer "class_max"
-    t.integer "number_of_classes"
-    t.float   "fee_per_meeting"
-    t.float   "fee_for_additional_materials"
-    t.float   "total_fee"
-    t.integer "semester_id"
-    t.integer "ptainstructor_id"
-    t.integer "teacher_id"
-  end
-
-  create_table "courses_students", :id => false, :force => true do |t|
-    t.integer "course_id"
-    t.integer "student_id"
-  end
-
-  create_table "enrollments", :force => true do |t|
-    t.integer "dismissal"
-    t.integer "scholarship"
-    t.float   "scholarship_amount"
-    t.boolean "enrolled"
-    t.integer "semester_id"
-    t.integer "course_id"
-    t.integer "student_id"
-  end
-
-  create_table "ptainstructors", :force => true do |t|
-    t.text    "name"
-    t.text    "email"
-    t.text    "phone"
-    t.text    "address"
-    t.text    "bio"
-    t.integer "semester_id"
-  end
-
-  create_table "semesters", :force => true do |t|
-    t.text  "name"
-    t.text  "semester_name"
-    t.text  "start_date"
-    t.text  "end_date"
-    t.text  "dates_with_no_classes"
-    t.text  "lottery_deadline"
-    t.text  "registration_deadline"
-    t.float "fee"
-    t.text  "dates_with_no_classes_day"
-    t.text  "individual_dates_with_no_classes"
-  end
-
-  create_table "students", :force => true do |t|
-    t.text    "first_name"
-    t.text    "last_name"
-    t.text    "grade"
-    t.text    "parent_phone"
-    t.text    "parent_phone2"
-    t.text    "parent_name"
-    t.text    "parent_email"
-    t.text    "health_alert"
-    t.integer "semester_id"
-    t.integer "teacher_id"
-  end
-
-  create_table "teachers", :force => true do |t|
-    t.text    "name"
-    t.text    "grade"
-    t.text    "classroom"
-    t.integer "semester_id"
-  end
-
   create_table "users", :force => true do |t|
-    t.text    "username"
-    t.text    "name"
-    t.text    "email"
-    t.text    "phone"
-    t.text    "address"
-    t.text    "bio"
-    t.text    "password_hash"
-    t.text    "password_salt"
-    t.integer "type"
+    t.text    'username'
+    t.text    'city'
+    t.text    'state'
+    t.text    'bio'
+    t.text    'password_hash'
+    t.text    'password_salt'
+  end
+
+  create_table "photos", :id => false, :force => true do |t|
+    t.text    'user_id'
+    t.text    'title'
+    t.text    'city'
+    t.text    'state'
+    t.text    'description'
+    t.text    'file_location'
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer    'user_id'
+    t.integer    'photo_id'
+    t.text       'comment_text'
+  end
+
+  create_table "likes", :force => true do |t|
+    t.text    'user_id'
+    t.text    'photo_id'
   end
 
 end
