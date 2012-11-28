@@ -6,32 +6,22 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml-rails'
-
 gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
 gem 'sass-rails',   '~> 3.2.3'
 
 gem 'rdoc'
+gem 'authlogic'
 
 group :production do
   gem 'pg'
-  gem 'authlogic'
 end
 
 group :test do
-  gem 'cucumber-rails'
-  gem 'prickle'
 end
 
 group :development, :test do
-  gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'rspec-rails'
-  gem 'simplecov'
   gem 'sqlite3'
-  gem 'authlogic'
 end
 
 # Gems used only for assets and not required
