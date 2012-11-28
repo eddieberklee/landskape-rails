@@ -59370,3 +59370,72 @@ Served asset /heart_unselected.png - 304 Not Modified (0ms)
 
 Started GET "/assets/heart_unselected.png" for 127.0.0.1 at 2012-11-25 23:09:54 -0800
 Served asset /heart_unselected.png - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (101.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (54.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+Connecting to database specified by database.yml
+  [1m[36m (64.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (57.5ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "description" text, "sunday" boolean, "monday" boolean, "tuesday" boolean, "wednesday" boolean, "thursday" boolean, "friday" boolean, "saturday" boolean, "start_time" text, "end_time" text, "grade_range" text, "class_min" integer, "class_max" integer, "number_of_classes" integer, "fee_per_meeting" float, "fee_for_additional_materials" float, "total_fee" float, "semester_id" integer, "ptainstructor_id" integer, "teacher_id" integer) 
+  [1m[36m (8.7ms)[0m  [1mCREATE TABLE "courses_students" ("course_id" integer, "student_id" integer) [0m
+  [1m[35m (92.8ms)[0m  CREATE TABLE "enrollments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "dismissal" integer, "scholarship" integer, "scholarship_amount" float, "enrolled" boolean, "semester_id" integer, "course_id" integer, "student_id" integer) 
+  [1m[36m (19.7ms)[0m  [1mCREATE TABLE "ptainstructors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "email" text, "phone" text, "address" text, "bio" text, "semester_id" integer) [0m
+  [1m[35m (15.3ms)[0m  CREATE TABLE "semesters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "semester_name" text, "start_date" text, "end_date" text, "dates_with_no_classes" text, "lottery_deadline" text, "registration_deadline" text, "fee" float, "dates_with_no_classes_day" text, "individual_dates_with_no_classes" text) 
+  [1m[36m (11.6ms)[0m  [1mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" text, "last_name" text, "grade" text, "parent_phone" text, "parent_phone2" text, "parent_name" text, "parent_email" text, "health_alert" text, "semester_id" integer, "teacher_id" integer) [0m
+  [1m[35m (10.9ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "grade" text, "classroom" text, "semester_id" integer) 
+  [1m[36m (40.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" text, "name" text, "email" text, "phone" text, "address" text, "bio" text, "password_hash" text, "password_salt" text, "type" integer) [0m
+  [1m[35m (29.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (8.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (10.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121125012720')
+  [1m[36m (39.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121021041637')[0m
+Connecting to database specified by database.yml
+  [1m[36m (44.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (117.5ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "description" text, "sunday" boolean, "monday" boolean, "tuesday" boolean, "wednesday" boolean, "thursday" boolean, "friday" boolean, "saturday" boolean, "start_time" text, "end_time" text, "grade_range" text, "class_min" integer, "class_max" integer, "number_of_classes" integer, "fee_per_meeting" float, "fee_for_additional_materials" float, "total_fee" float, "semester_id" integer, "ptainstructor_id" integer, "teacher_id" integer) 
+  [1m[36m (19.8ms)[0m  [1mCREATE TABLE "courses_students" ("course_id" integer, "student_id" integer) [0m
+  [1m[35m (47.9ms)[0m  CREATE TABLE "enrollments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "dismissal" integer, "scholarship" integer, "scholarship_amount" float, "enrolled" boolean, "semester_id" integer, "course_id" integer, "student_id" integer) 
+  [1m[36m (8.1ms)[0m  [1mCREATE TABLE "ptainstructors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "email" text, "phone" text, "address" text, "bio" text, "semester_id" integer) [0m
+  [1m[35m (52.0ms)[0m  CREATE TABLE "semesters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "semester_name" text, "start_date" text, "end_date" text, "dates_with_no_classes" text, "lottery_deadline" text, "registration_deadline" text, "fee" float, "dates_with_no_classes_day" text, "individual_dates_with_no_classes" text) 
+  [1m[36m (27.4ms)[0m  [1mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" text, "last_name" text, "grade" text, "parent_phone" text, "parent_phone2" text, "parent_name" text, "parent_email" text, "health_alert" text, "semester_id" integer, "teacher_id" integer) [0m
+  [1m[35m (21.7ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "grade" text, "classroom" text, "semester_id" integer) 
+  [1m[36m (16.8ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" text, "name" text, "email" text, "phone" text, "address" text, "bio" text, "password_hash" text, "password_salt" text, "type" integer) [0m
+  [1m[35m (7.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (39.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (50.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121125012720')
+  [1m[36m (19.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121021041635')[0m
+  [1m[35m (6.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121021041634')
+  [1m[36m (8.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121021041636')[0m
+  [1m[35m (21.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121021041637')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (49.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (205.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" text, "city" text, "state" text, "bio" text, "password_hash" text, "password_salt" text) 
+  [1m[36m (10.5ms)[0m  [1mCREATE TABLE "photos" ("user_id" text, "title" text, "city" text, "state" text, "description" text, "file_location" text) [0m
+  [1m[35m (53.1ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "photo_id" integer, "comment_text" text) 
+  [1m[36m (164.2ms)[0m  [1mCREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" text, "photo_id" text) [0m
+  [1m[35m (85.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.5ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (64.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (253.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121125012720')
+  [1m[36m (275.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121021041635')[0m
+  [1m[35m (279.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121021041634')
+  [1m[36m (84.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20121021041636')[0m
+  [1m[35m (515.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20121021041637')
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (3.6ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (80.8ms)[0m  DROP TABLE "users"
+  [1m[36m (11.1ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" text, "city" text, "state" text, "bio" text, "password_hash" text, "password_salt" text) [0m
+  [1m[35m (15.1ms)[0m  DROP TABLE "photos"
+  [1m[36m (19.5ms)[0m  [1mCREATE TABLE "photos" ("user_id" text, "title" text, "city" text, "state" text, "description" text, "file_location" text) [0m
+  [1m[35m (59.6ms)[0m  DROP TABLE "comments"
+  [1m[36m (41.1ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "photo_id" integer, "comment_text" text) [0m
+  [1m[35m (37.7ms)[0m  DROP TABLE "likes"
+  [1m[36m (14.1ms)[0m  [1mCREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" text, "photo_id" text) [0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
