@@ -8,6 +8,9 @@
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
+    - if defined? @login_fail and @login_fail
+      %h1
+        Incorrect Username and/or password
     %div#container
       %div.hero-unit
         %h1

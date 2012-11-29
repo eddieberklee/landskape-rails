@@ -5,6 +5,7 @@ Landskape::Application.routes.draw do
   resources :logins
   root :to => "logins#index"
   resources :photos
+  #photo :to => "photos#index"
   resources :maps
 
   # match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
