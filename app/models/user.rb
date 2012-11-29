@@ -15,9 +15,11 @@ class User < ActiveRecord::Base
 
   validate :username_is_valid
 
-  def initialize()
-    # Do nothing
-  end
+  #def initialize(*args)
+  #  args.each do |a|
+  #    puts a
+  #  end
+  #end
 
   def username_is_valid
     if self.username == nil; errors.add(:username, "The username was not set.");return; end

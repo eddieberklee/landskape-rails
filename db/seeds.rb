@@ -13,13 +13,19 @@ puts "Seeding..."
 users = []
 users.push(OpenStruct.new({
   :username => "user",
+  :city => "Berkeley",
+  :state => "California",
+  :bio => "I am a test user, and this is my bio",
   :password => "pass"
 }))
 users.each do |u|
   puts "Creating a user"
-  user = User.new
-  puts "Setting the username"
+  user = User.new(username: u.username)
+  puts "Setting the username", user.username
   user.username = u.username
+  user.city = u.city
+  user.state = u.state
+  user.bio = u.bio
   puts "Setting the password"
   user.password = u.password
   puts "Saving the user"
