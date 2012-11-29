@@ -1,4 +1,5 @@
 *.swp
 *.swo
 .idea
-log/development.log
+log/
+tmp/
