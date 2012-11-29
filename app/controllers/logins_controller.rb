@@ -19,9 +19,11 @@ class LoginsController < ActionController::Base
     if user = User.authenticate(params[:username], params[:password])
       session[:current_user_id] = user.id
       @username = params[:username]
-      redirect_to "/photos"
+      redirect_to photos_url
     else
       @login_fail = true
+      @error_message = "The given login was not found or the password did not match."
+      return render :action => "index"
     end
   end
 

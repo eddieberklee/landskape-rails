@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
 
   validate :username_is_valid
 
+  def initialize()
+    # Do nothing
+  end
+
   def username_is_valid
     if self.username == nil; errors.add(:username, "The username was not set.");return; end
     if not self.username.instance_of? String; errors.add(:username, "The username should be a string.");return;end
@@ -34,11 +38,12 @@ class User < ActiveRecord::Base
     return user if user && user.matching_password?(pass)
 
     #Failure, the username was invalid or the password didn't match.
-    flash[:warning] = [[:login, "The given login was not found or the password did not match."]]
-    redirect_to logins_path
+    return nil
+    #redirect_to logins_url
   end
 
   def prepare_password
+    puts "Preparing password"
     unless password.blank?
       self.password_salt = Digest::SHA2.hexdigest([Time.now, rand].join)
       self.password_hash = encrypt_password(password)

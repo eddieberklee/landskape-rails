@@ -10,6 +10,25 @@ require 'ostruct'
 
 puts "Seeding..."
 
+users = []
+users.push(OpenStruct.new({
+  :username => "user",
+  :password => "pass"
+}))
+users.each do |u|
+  puts "Creating a user"
+  user = User.new
+  puts "Setting the username"
+  user.username = u.username
+  puts "Setting the password"
+  user.password = u.password
+  puts "Saving the user"
+  user.save()
+  #User.create(
+  #    username: u.username,
+  #    password: u.password
+  #)
+end
 #semesters = []
 #semesters.push(OpenStruct.new({
 #	:name => 'Fall 2012',
