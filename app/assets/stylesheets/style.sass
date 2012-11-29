@@ -1,21 +1,15 @@
 @import "bootstrap"
 @import "css3_mixins"
+@import "variables"
+@import "vspacer_num"
+@import "css3_mixins"
+
 
 .clear
   clear: both
 
 .no-select
   @include css3-user-select
-
-
-
-// FILTERS.SASS
-// filters.sass
-// description: css for the filters bar
-
-@import "variables"
-@import "vspacer_num"
-@import "css3_mixins"
 
 $filters-text-font-size: 12.5px
 .filters-text
@@ -62,11 +56,6 @@ $filters-text-font-size: 12.5px
   &:active
     position: relative
     top: 1px
-
-
-// INDEX.SASS
-// index-specific sass file
-@import "css3_mixins"
 
 .black-background
   width: 100%
@@ -162,30 +151,6 @@ $popup-padding-right: 10px
   top: 50px
   left: 10px
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// NAVBAR.SASS
-// navbar.sass
-// description: css for the navigation bar
-
-@import "css3_mixins"
-
 #navbar
   background: inherit
   margin-top: 10px
@@ -210,10 +175,6 @@ $popup-padding-right: 10px
 // STYLE.SASS
 // STYLE.SASS
 // description: main global css file
-
-@import "variables"
-@import "vspacer_num"
-@import "css3_mixins"
 
 .clear
   clear: both
@@ -290,11 +251,6 @@ $pic-thumb-height: 160px
     margin-right: 5px
     @include css3-border-radius(6px)
 
-
-
-// UPLOAD.SASS
-@import "css3_mixins"
-
 #upload-left
   background: #888
 #drag-and-drop
@@ -314,10 +270,6 @@ $pic-thumb-height: 160px
   padding-top: 30px
   padding-bottom: 30px
   padding-left: 55px
-
-
-// USERPAGE.SASS
-@import "css3_mixins"
 
 #img
   margin: 2px
