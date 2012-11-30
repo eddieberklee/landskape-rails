@@ -8,57 +8,59 @@
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
-    %div#container
-      %div.hero-unit.logindiv
-        %h1
-          Login
-
-        .vspacer15
-
-        %form{:id=>"login", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
-          %fieldset
-            %legend
-              Login
-            %label{:for=>"username"}
-              Username
-            %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
-            %label{:for=>"password"}
-              Password
-            %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
-            %input.btn{:type=>"submit", :name=>"submit", :value=>"Login", :style=>"float: right;"}
-            - if defined? @login_fail and @login_fail
-              .error-message
-                #{@error_message}
-      %div.hero-unit.logindiv
-        %h1
-          Register
-
-        .vspacer15
-
-        %form{:id=>"signup", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
-          %fieldset
-            %legend
-              Login
-            %label{:for=>"username"}
-              Username
-            %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
-            %input{:type=>"hidden", :name=>"signup", :value=>"signup"}
-            %label{:for=>"password"}
-              Password
-            %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
-            %label{:for=>"city"}
-              City
-            %input{:type=>"text", :name=>"city", :id=>"city", :maxlength=>"50"}
-            %label{:for=>"state"}
-              State
-            %input{:type=>"text", :name=>"state", :id=>"state", :maxlength=>"50"}
-            %label{:for=>"bio"}
-              Bio
-            %input{:type=>"text", :name=>"bio", :id=>"bio", :maxlength=>"50"}
-            %input.btn{:type=>"submit", :name=>"submit", :value=>"Register", :style=>"float: right;"}
-            - if defined? @signup_fail and @signup_fail
-              .error-message
-                #{@error_message}
+    .container
+      .vspacer15
+      .clear
+      #frontpage-icon
+        %img{:src => "assets/landskape_logo.png"}
+        .mission-statement
+          A place to find beautiful views you can find around you.
+      #fields
+        %div.logindiv
+          %h1
+            Login
+          /.vspacer15
+          %form{:id=>"login", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
+            %fieldset
+              If you already have an account, sign in!
+              %hr
+              - if defined? @login_fail and @login_fail
+                .error-message
+                  #{@error_message}
+              %label{:for=>"username"}
+                Username
+              %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
+              %label{:for=>"password"}
+                Password
+              %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
+              %input.btn{:type=>"submit", :name=>"submit", :value=>"Login", :style=>"float: right;"}
+        %div.logindiv
+          %h1
+            Register
+          %form{:id=>"signup", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
+            %fieldset
+              Sign up to view the content on the site.
+              %hr
+              - if defined? @signup_fail and @signup_fail
+                .error-message
+                  #{@error_message}
+              %label{:for=>"username"}
+                Username
+              %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
+              %input{:type=>"hidden", :name=>"signup", :value=>"signup"}
+              %label{:for=>"password"}
+                Password
+              %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
+              %label{:for=>"city"}
+                City
+              %input{:type=>"text", :name=>"city", :id=>"city", :maxlength=>"50"}
+              %label{:for=>"state"}
+                State
+              %input{:type=>"text", :name=>"state", :id=>"state", :maxlength=>"50"}
+              %label{:for=>"bio"}
+                Bio
+              %input{:type=>"text", :name=>"bio", :id=>"bio", :maxlength=>"50"}
+              %input.btn{:type=>"submit", :name=>"submit", :value=>"Register", :style=>"float: right;"}
 
     :javascript
 
