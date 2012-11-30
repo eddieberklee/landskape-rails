@@ -59,13 +59,23 @@ class User < ActiveRecord::Base
     Digest::SHA2.hexdigest([pass, password_salt].join)
   end
 
-  private
   def prepare_password
     puts "Preparing password"
     unless @password.blank?
       self.password_salt = Digest::SHA2.hexdigest([Time.now, rand].join)
       self.password_hash = encrypt_password(@password)
     end
+  end
+
+  def self.create_new_user(params)
+    user = User.new
+    user.username = params[:username]
+    user.city = params[:city]
+    user.state = params[:state]
+    user.bio = params[:bio]
+    user.password = params[:password]
+    puts user
+    return user.save()
   end
 
 end

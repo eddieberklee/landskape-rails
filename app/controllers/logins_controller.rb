@@ -18,12 +18,22 @@ class LoginsController < ActionController::Base
   def create
     if user = User.authenticate(params[:username], params[:password])
       session[:current_user_id] = user.id
-      @username = params[:username]
       redirect_to photos_url
     else
-      @login_fail = true
-      @error_message = "The given login was not found or the password did not match."
-      return render :action => "index"
+      if params[:signup] == "signup"
+        if User.create_new_user(params)
+          redirect_to photos_url
+        else
+          @signup_fail = true
+          @error_message = "Someone with the same username already exists. Choose a new one."
+          return render :action => "index"
+        end
+        #Do signup stuff
+      else
+        @login_fail = true
+        @error_message = "The given login was not found or the password did not match."
+        return render :action => "index"
+      end
     end
   end
 
