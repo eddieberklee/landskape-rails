@@ -19,6 +19,7 @@ users.push(OpenStruct.new({
   :password => "pass"
 }))
 users.each do |u|
+  User.create_new_user(u)
   user = User.new
   user.username = u.username
   user.city = u.city
