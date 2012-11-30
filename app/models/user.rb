@@ -73,8 +73,11 @@ class User < ActiveRecord::Base
     user.state = params[:state]
     user.bio = params[:bio]
     user.password = params[:password]
-    puts user
-    return user.save()
+    if user.save()
+      return user
+    else
+      return nil
+    end
   end
 
 end

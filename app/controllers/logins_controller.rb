@@ -21,7 +21,8 @@ class LoginsController < ActionController::Base
       redirect_to photos_url
     else
       if params[:signup] == "signup"
-        if User.create_new_user(params)
+        if user = User.create_new_user(params)
+          session[:current_user_id] = user.id
           redirect_to photos_url
         else
           @signup_fail = true
