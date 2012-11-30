@@ -10,6 +10,23 @@ require 'ostruct'
 
 puts "Seeding..."
 
+users = []
+users.push(OpenStruct.new({
+  :username => "user",
+  :city => "Berkeley",
+  :state => "California",
+  :bio => "I am a test user, and this is my bio",
+  :password => "pass"
+}))
+users.each do |u|
+  user = User.new
+  user.username = u.username
+  user.city = u.city
+  user.state = u.state
+  user.bio = u.bio
+  user.password = u.password
+  user.save()
+end
 #semesters = []
 #semesters.push(OpenStruct.new({
 #	:name => 'Fall 2012',
