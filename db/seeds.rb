@@ -19,21 +19,13 @@ users.push(OpenStruct.new({
   :password => "pass"
 }))
 users.each do |u|
-  puts "Creating a user"
-  user = User.new(username: u.username)
-  puts "Setting the username", user.username
+  user = User.new
   user.username = u.username
   user.city = u.city
   user.state = u.state
   user.bio = u.bio
-  puts "Setting the password"
   user.password = u.password
-  puts "Saving the user"
-  user.save()
-  #User.create(
-  #    username: u.username,
-  #    password: u.password
-  #)
+  puts user.save()
 end
 #semesters = []
 #semesters.push(OpenStruct.new({

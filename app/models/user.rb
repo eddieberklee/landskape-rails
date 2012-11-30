@@ -27,11 +27,12 @@ class User < ActiveRecord::Base
     if self.username.length < 3 then
       errors.add(:username, "The username must be at least three characters long.")
     end
-    user = find_by_username self.username
-    if user != self
+    user = User.find_by_username self.username
+    if user and user != self
       errors.add(:username, "The username already exists in the database.")
       return false
     end
+    return true
   end
 
   # login can be either username or email address
@@ -44,19 +45,27 @@ class User < ActiveRecord::Base
     #redirect_to logins_url
   end
 
-  def prepare_password
-    puts "Preparing password"
-    unless password.blank?
-      self.password_salt = Digest::SHA2.hexdigest([Time.now, rand].join)
-      self.password_hash = encrypt_password(password)
-    end
+  def matching_password?(pass)
+    puts self.password_hash
+    puts encrypt_password(pass)
+    self.password_hash == encrypt_password(pass)
+  end
+
+  def password=(p)
+    @password = p
   end
 
   def encrypt_password(pass)
     Digest::SHA2.hexdigest([pass, password_salt].join)
   end
 
-  def matching_password?(pass)
-    self.password_hash == encrypt_password(pass)
+  private
+  def prepare_password
+    puts "Preparing password"
+    unless @password.blank?
+      self.password_salt = Digest::SHA2.hexdigest([Time.now, rand].join)
+      self.password_hash = encrypt_password(@password)
+    end
   end
+
 end
