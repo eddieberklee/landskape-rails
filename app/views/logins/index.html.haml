@@ -8,6 +8,8 @@
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
+    #{session}
+    = @signup
     .container
       .vspacer15
       .clear
@@ -27,6 +29,7 @@
               - if defined? @login_fail and @login_fail
                 .error-message
                   #{@error_message}
+              %input{:type=>"hidden", :name=>"user_auth_action", :value=>"login"}
               %label{:for=>"username"}
                 Username
               %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
@@ -44,10 +47,10 @@
               - if defined? @signup_fail and @signup_fail
                 .error-message
                   #{@error_message}
+              %input{:type=>"hidden", :name=>"user_auth_action", :value=>"signup"}
               %label{:for=>"username"}
                 Username
               %input{:type=>"text", :name=>"username", :id=>"username", :maxlength=>"50"}
-              %input{:type=>"hidden", :name=>"signup", :value=>"signup"}
               %label{:for=>"password"}
                 Password
               %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}

@@ -13,7 +13,8 @@
         Upload
         %i.icon-picture
     %div#login-logout
-      %a.btn.btn-success
+      /- pageContext.setAttribute('signup', 'logout')
+      %a.btn.btn-success{:href => "/logins?user_auth_action=logout"}
         Logout
     %div#who-logged-in
       Logged in as:
