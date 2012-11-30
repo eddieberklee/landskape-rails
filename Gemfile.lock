@@ -134,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   authlogic
   bootstrap-sass
   coffee-rails (~> 3.2.1)
