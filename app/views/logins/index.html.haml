@@ -9,11 +9,9 @@
     = javascript_include_tag("application")
   %body
     %div#container
-      %div.hero-unit
+      %div.hero-unit.logindiv
         %h1
           Login
-        %a{:href=>"#{photos_path()}", :style=>"position:relative;left:120px;"}
-          Quick Link to Photos
 
         .vspacer15
 
@@ -27,11 +25,11 @@
             %label{:for=>"password"}
               Password
             %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
-            %input.btn{:type=>"submit", :name=>"submit", :value=>"Submit", :style=>"float: right;"}
+            %input.btn{:type=>"submit", :name=>"submit", :value=>"Login", :style=>"float: right;"}
             - if defined? @login_fail and @login_fail
               .error-message
                 #{@error_message}
-      %div.hero-unit
+      %div.hero-unit.logindiv
         %h1
           Register
 
@@ -57,7 +55,7 @@
             %label{:for=>"bio"}
               Bio
             %input{:type=>"text", :name=>"bio", :id=>"bio", :maxlength=>"50"}
-            %input.btn{:type=>"submit", :name=>"submit", :value=>"Submit", :style=>"float: right;"}
+            %input.btn{:type=>"submit", :name=>"submit", :value=>"Register", :style=>"float: right;"}
             - if defined? @signup_fail and @signup_fail
               .error-message
                 #{@error_message}
