@@ -4,6 +4,7 @@ Landskape::Application.routes.draw do
 
   resources :logins
   root :to => "logins#index"
+  resources :users
   resources :photos
   resources :comments
   resources :likes
