@@ -6,7 +6,7 @@ $(function() {
     function() {
       id = $(this).attr('id');
       $(this).stop(id, true, false);
-      $(this).children(".pic-thumb-hover-content").animate({
+      $(this).children(".pic-thumb-hover-content").stop().animate({
         bottom: '0px',
         queue: id,
       },200);
@@ -17,7 +17,7 @@ $(function() {
       $padding_top = $(this).children(".pic-thumb-hover-content").css('padding-top');
       $padding_bottom = $(this).children(".pic-thumb-hover-content").css('padding-bottom');
       $(this).stop(id, true, false);
-      $(this).children(".pic-thumb-hover-content").animate({
+      $(this).children(".pic-thumb-hover-content").stop().animate({
         bottom: '-' + (parseInt($height) + parseInt($padding_top) + parseInt($padding_bottom)),
         queue: id,
       },200);
