@@ -8,42 +8,8 @@
     = javascript_include_tag("application")
   %body
     .container
-      #navbar
-        %a{:href => "/"}
-          %img#logo{:src => "assets/landskape_logo.png"}
-        %div.float-right{:style=>"margin-right:40px;"}
-          %div#search
-            %form.form-search
-              %div.input-append
-                %input.span2.search-query{:type=>"text"}
-                %button.btn{:type=>"submit"}
-                  %i.icon-search
-          %div#upload
-            %a.btn{:href => "/upload"}
-              Upload
-              %i.icon-picture
-          %div#login-logout
-            %a.btn.btn-success
-              Logout
-          %div#who-logged-in
-            Logged in as:
-            %a{:href => "/user"}
-              #{@username}
-          .clear
-        .clear
-      #filters-bar
-        %div{:style => "float:left;margin-top:4px;margin-left:12px;margin-right:7px;"}
-          Navigate to: 
-        .filters-item.filters-text.underline
-          Trending
-        .filters-item.filters-text.underline
-          Recent
-        .filters-item.filters-text.underline
-          Favorites
-        .filters-item.filters-text.underline
-          Photo of the Day
-        .clear
-          .clear
+      = render :partial => "partial/topbar", :locals => {:user => @user}
+      = render :partial => "partial/filters_bar"
       .container
         %h3
           Viewing:

@@ -6,12 +6,8 @@ class PhotosController < ApplicationController
 
   def index
     get_and_store_username()
-    #@username = 'eddie'
-  end
-
-  def get_and_store_username
-    user = User.find_by_id(session[:current_user_id])
-    @username = user.username
+    if !@user
+    end
   end
 
   def new
@@ -28,6 +24,12 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+  end
+
+  def get_and_store_username
+    @user = User.find_by_id(session[:current_user_id])
+    puts session[:current_user_id]
+    puts User.find_by_id(session[:current_user_id])
   end
 
 end
