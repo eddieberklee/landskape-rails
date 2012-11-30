@@ -6,27 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'ostruct'
+#require 'ostruct'
 
 puts "Seeding..."
 
 users = []
-users.push(OpenStruct.new({
+users.push({
   :username => "user",
   :city => "Berkeley",
   :state => "California",
   :bio => "I am a test user, and this is my bio",
   :password => "pass"
-}))
+})
 users.each do |u|
   User.create_new_user(u)
-  user = User.new
-  user.username = u.username
-  user.city = u.city
-  user.state = u.state
-  user.bio = u.bio
-  user.password = u.password
-  user.save()
 end
 #semesters = []
 #semesters.push(OpenStruct.new({
