@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :city, :state, :bio
-  before_save :prepare_password
+  before_validation :prepare_password
 
   validates_presence_of :username
   validates_uniqueness_of :username, :allow_blank => false
@@ -60,7 +60,6 @@ class User < ActiveRecord::Base
   end
 
   def prepare_password
-    puts "Preparing password"
     unless @password.blank?
       self.password_salt = Digest::SHA2.hexdigest([Time.now, rand].join)
       self.password_hash = encrypt_password(@password)

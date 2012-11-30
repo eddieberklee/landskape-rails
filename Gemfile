@@ -5,6 +5,7 @@ gem 'rake', '~>10.0.1'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'thin'
+gem 'activerecord'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

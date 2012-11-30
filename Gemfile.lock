@@ -139,6 +139,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   authlogic
   aws-s3
   bootstrap-sass

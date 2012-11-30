@@ -26,7 +26,7 @@ users.each do |u|
   user.state = u.state
   user.bio = u.bio
   user.password = u.password
-  puts user.save()
+  user.save()
 end
 #semesters = []
 #semesters.push(OpenStruct.new({
