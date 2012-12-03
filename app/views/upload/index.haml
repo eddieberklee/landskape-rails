@@ -7,4 +7,31 @@
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
-    = @user.username
+    .container
+      = render :partial => "partial/topbar", :locals => {:user => @user}
+      %div.span12
+        %h3
+          Upload a Landskape
+      %form{:id=>"upload", :action=>"#{upload_index_url}", :method=>"post"}
+        %div.span5#upload-left{:style => "float:left;"}
+          #upload-box
+            #drag-and-drop
+              %span{:style=>"position:relative;top:80px;left:35px;font-size:1.2em;width:200px;"}
+                Drag and drop your landskape here!
+            #file-browse
+              %input{:type=>"file", :name => "uploaded_file", :style=>"margin-bottom:10px;"}
+              .clear
+        %div.span4#upload-right{:style => "float:left;"}
+          %label Title
+          %input{:type=>"text", :name => "title"}
+          %label Description
+          %input{:type=>"text", :name => "description"}
+
+          %label City
+          %input{:type=>"text", :name => "city"}
+          %label State
+          %input{:type=>"text", :name => "state"}
+          %br
+          %input.btn.btn-warning{:type=>"submit", :value => "Upload"}
+
+        .clear

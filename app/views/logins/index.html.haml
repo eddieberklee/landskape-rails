@@ -8,9 +8,8 @@
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
-    #{session}
-    = @signup
     .container
+      = session
       .vspacer15
       .clear
       #frontpage-icon

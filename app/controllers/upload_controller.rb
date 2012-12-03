@@ -2,9 +2,11 @@ class UploadController < ApplicationController
   protect_from_forgery
 
   def show
+    get_and_store_user()
   end
 
   def index
+    get_and_store_user()
   end
 
   def new
@@ -12,6 +14,11 @@ class UploadController < ApplicationController
 
   def create
     get_and_store_user()
+    if @user
+      return render :action => "index"
+    else
+      redirect_to logins_url
+    end
   end
 
   def edit
