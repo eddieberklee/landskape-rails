@@ -9,6 +9,7 @@ Landskape::Application.routes.draw do
   resources :comments
   resources :likes
   resources :maps
+  resources :upload
 
   # match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
 
