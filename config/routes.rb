@@ -11,6 +11,8 @@ Landskape::Application.routes.draw do
   resources :maps
   resources :upload
 
+  resources :my_records
+
   # match '/semesters/:id/import' => 'semesters#import', :as=>'semester_import', :via=>[:post,:get]
 
   #resources :teachers
