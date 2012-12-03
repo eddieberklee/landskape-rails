@@ -58,3 +58,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'aws-s3'
+gem 'aws-sdk'
