@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.float "latitude"
-    t.float "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.timestamps
   end
 

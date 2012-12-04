@@ -106,8 +106,12 @@
           $(".blackout").css('visibility','visible');
         });
         $("#fake_submit2").click(function(e) {
-          $("#latitude").value(lat);
-          $("#longitude").value(lon);
+          $("#latitude").val(lat);
+          $("#longitude").val(lon);
+          console.log(lat);
+          console.log($("#latitude"));
+          console.log(lon);
+          console.log($("#longitude"));
           $("#true_submit").click();
         });
       });
