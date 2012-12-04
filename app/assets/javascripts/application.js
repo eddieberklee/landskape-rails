@@ -15,6 +15,6 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-require navbar
-require pic
-require userpage
+//require navbar
+//require 'pic';
+//require 'userpage';

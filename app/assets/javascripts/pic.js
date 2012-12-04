@@ -8,7 +8,7 @@ $(function() {
       $(this).stop(id, true, false);
       $(this).children(".pic-thumb-hover-content").stop().animate({
         bottom: '0px',
-        queue: id,
+        queue: id
       },200);
     },
     function() {
@@ -19,7 +19,7 @@ $(function() {
       $(this).stop(id, true, false);
       $(this).children(".pic-thumb-hover-content").stop().animate({
         bottom: '-' + (parseInt($height) + parseInt($padding_top) + parseInt($padding_bottom)),
-        queue: id,
+        queue: id
       },200);
     });
 
@@ -58,11 +58,11 @@ $(function() {
   $(".pic-thumb .pic").click(function() {
     $("#photo-popup-view").show();
   });
-	$(".comment-button").click(function() {
-		$("#photo-popup-view").show();
-	});
+  $(".comment-button").click(function() {
+    $("#photo-popup-view").show();
+  });
   $(".black-background-specific").click(function() {
-    $(".black-background").hide();
+    $("#photo-popup-view").hide();
   });
 
 	$("#photo-popup-view a.btn-mini").click(function() {
@@ -70,7 +70,7 @@ $(function() {
 		$(".popup-comment-box").append('<div class="popup-comment"><span class="popup-comment-username"><a>amadeus</a>: </span><span class="popup-comment-text">'+newtext+'</span></div>');
 	});
 
-   $(".map-pin").draggable();
+//   $(".map-pin").draggable();
 
   $(".map-popup").click(function() {
 		$("#map-popup-view").show();
