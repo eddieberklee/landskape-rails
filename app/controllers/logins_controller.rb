@@ -14,7 +14,7 @@ class LoginsController < ActionController::Base
       session[:current_user_id] = nil
       return render :action => "index"
     elsif session[:current_user_id] != nil
-      redirect_to photos_url
+      redirect_to photos_path()
     end
   end
 

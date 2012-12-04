@@ -1,5 +1,5 @@
 #navbar
-  %a{:href => "/photos"}
+  %a{:href => "#{photos_path()}"}
     %img#logo{:src => "assets/landskape_logo.png"}
   %div.float-right{:style=>"margin-right:40px;"}
     %div#search
@@ -9,12 +9,12 @@
           %button.btn{:type=>"submit"}
             %i.icon-search
     %div#upload
-      %a.btn{:href => "/upload", :method => "get"}
+      %a.btn{:href => "#{upload_index_path()}", :method => "get"}
         Upload
         %i.icon-picture
     %div#login-logout
       /- pageContext.setAttribute('signup', 'logout')
-      %a.btn.btn-success{:href => "/logins?user_auth_action=logout"}
+      %a.btn.btn-success{:href => "#{logins_path()}?user_auth_action=logout"}
         Logout
     %div#who-logged-in
       Logged in as:
