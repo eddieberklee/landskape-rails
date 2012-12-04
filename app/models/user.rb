@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :city, :state, :bio
+  attr_accessible :username, :city, :state, :bio, :latitude, :longitude
   before_validation :prepare_password
 
   validates_presence_of :username
@@ -73,6 +73,8 @@ class User < ActiveRecord::Base
     user.state = params[:state]
     user.bio = params[:bio]
     user.password = params[:password]
+    user.latitude = params[:latitude]
+    user.longitude = params[:longitude]
     if user.save()
       return user
     else
