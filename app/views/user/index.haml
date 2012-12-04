@@ -10,6 +10,7 @@
   %body
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
+      = @photos
       %h3
         #{@user.username}'s photos
       %span{:style =>"font-size:14px;font-weight:bold;"}

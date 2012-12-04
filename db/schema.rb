@@ -17,11 +17,13 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.integer "user_id"
     t.integer "photo_id"
     t.text    "comment_text"
+    t.timestamps
   end
 
   create_table "likes", :force => true do |t|
     t.text "user_id"
     t.text "photo_id"
+    t.timestamps
   end
 
   create_table "photos", :force => true do |t|
@@ -35,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.float "latitude"
+    t.float "longitude"
+    t.timestamps
   end
 
   create_table "users", :force => true do |t|
@@ -42,8 +47,11 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.text "city"
     t.text "state"
     t.text "bio"
+    t.float "latitude"
+    t.float "longitude"
     t.text "password_hash"
     t.text "password_salt"
+    t.timestamps
   end
 
 end

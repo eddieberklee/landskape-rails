@@ -6,21 +6,13 @@ class UserController < ApplicationController
 
   def index
     get_and_store_username()
-    if !@user
-    end
+    get_users_photos(1)
   end
 
   def new
   end
 
   def create
-    #get_and_store_username()
-    #flash[:notice] = "success upload"
-    #@photo = Photo.new(params[:photo])
-    #@photo.user = @user
-    #@photo.save
-    #redirect_to photos_path
-    #return
   end
 
   def edit
@@ -34,8 +26,16 @@ class UserController < ApplicationController
 
   def get_and_store_username
     @user = User.find_by_id(session[:current_user_id])
-    puts session[:current_user_id]
-    puts User.find_by_id(session[:current_user_id])
+    if !@user
+      redirect_to logins_path()
+    end
+  end
+
+  def get_users_photos(page)
+    @photos = Photo.order("created_at DESC").where(:user_id => 1).eager_load_values
+    if !@photos.first
+      @photo_error = "No uploaded photos."
+    end
   end
 
 end
