@@ -7,7 +7,6 @@ class UploadController < ApplicationController
 
   def index
     get_and_store_user()
-    @photo = Photo.new
   end
 
   def new
@@ -15,13 +14,6 @@ class UploadController < ApplicationController
 
   def create
     get_and_store_user()
-    if @user
-      flash[:notice] = "Photo filename.png has been successfully uploaded!"
-      return render :action => photos_url
-    else
-      redirect_to logins_url
-      return
-    end
   end
 
   def edit
