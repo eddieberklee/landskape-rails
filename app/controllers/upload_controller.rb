@@ -2,9 +2,11 @@ class UploadController < ApplicationController
   protect_from_forgery
 
   def show
+    get_and_store_user()
   end
 
   def index
+    get_and_store_user()
   end
 
   def new

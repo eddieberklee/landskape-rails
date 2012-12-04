@@ -10,9 +10,11 @@ class LoginsController < ActionController::Base
   def index
     @login_fail = false
     @action = params[:user_auth_action]
-    if @action == "logout"
+    if @action and @action == "logout"
       session[:current_user_id] = nil
       return render :action => "index"
+    elsif session[:current_user_id] != nil
+      redirect_to photos_path()
     end
   end
 

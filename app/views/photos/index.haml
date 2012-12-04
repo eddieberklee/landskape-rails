@@ -3,7 +3,7 @@
 %html
   %head
     %title
-      Login
+      Photos
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
   %body
@@ -13,7 +13,13 @@
       .container
         %h3
           Viewing:
-          %span#viewing trending
+          %span#viewing photos around me
+        %div
+          %button
+            Previous Page
+          %button
+            Next Page
+        -#- for p in @photos do
         %div.column1
           %div.pic-thumb#pic-1
             %div.pic-thumb-hover-content

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021041637) do
+ActiveRecord::Schema.define(:version => 20121204010742) do
 
   create_table "comments", :force => true do |t|
     t.integer "user_id"
@@ -25,12 +25,16 @@ ActiveRecord::Schema.define(:version => 20121021041637) do
   end
 
   create_table "photos", :force => true do |t|
-    t.text "user_id"
-    t.text "title"
-    t.text "city"
-    t.text "state"
-    t.text "description"
-    t.text "file_location"
+    t.text     "user_id"
+    t.text     "title"
+    t.text     "city"
+    t.text     "state"
+    t.text     "description"
+    t.text     "file_location"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", :force => true do |t|
