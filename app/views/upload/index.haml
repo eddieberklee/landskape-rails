@@ -10,9 +10,9 @@
     %script{:type=>"text/javascript", :src=>"https://raw.github.com/HPNeo/gmaps/master/gmaps.js"}
     %script{:type=>"text/javascript", :src=>"http://hpneo.github.com/gmaps/prettify/prettify.js"}
     %link{:href=>"http://fonts.googleapis.com/css?family=Convergence|Bitter|Droid+Sans|Ubuntu+Mono", :rel=>"stylesheet", :type=>"text/css"}
-    %link{:href=>"http://hpneo.github.com/gmaps/styles.css", :rel=>"stylesheet", :type=>"text/css"}
     %link{:href=>"http://hpneo.github.com/gmaps/prettify/prettify.css", :rel=>"stylesheet", :type=>"text/css"}
   %body
+    .blackout
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
       %div.span12
@@ -29,6 +29,8 @@
               = f.file_field :photo
               .clear
         %div.span4#upload-right{:style => "float:left;"}
+          %input{:type=>"hidden", :id=>"latitude", :name=>"latitude"}
+          %input{:type=>"hidden", :id=>"longitude", :name=>"longitude"}
           = f.label :Title
           = f.text_field :title
           = f.label :Description
@@ -39,20 +41,28 @@
           = f.label :State
           = f.text_field :state
           %br
-            = f.submit :Upload, :class => "btn btn-warning"
+          %button.btn#fake_submit
+            Upload
+          = f.submit :Upload, :class => "btn btn-warning", :id=>"true_submit"
       %div#select-location
         %form{:method=>"post", :id=>"geocoding_form"}
-          %label{:for=>"address"}
-            Address:
+          %h4
+            Pinpoint a Location:
           %div.input
             %input#address{:type=>"text", :name=>"address"}
-            %input.btn{:type=>"submit", :value=>"Search"}
+            %button.btn#button{:type=>"submit"}
+              %i.icon-search
+            .clear
         %div.popin
           %div#map
+        %button.btn#fake_submit2
+          Upload
 
         .clear
     :javascript
       $(document).ready(function(){
+        $tr = $("#true_submit");
+        $tr.css('visibility','hidden');
         lat = 0;
         lon = 0;
         prettyPrint();
@@ -89,5 +99,15 @@
               }
             }
           });
+        });
+        $("#fake_submit").click(function(e) {
+          e.preventDefault();
+          $("#select-location").css('visibility','visible');
+          $(".blackout").css('visibility','visible');
+        });
+        $("#fake_submit2").click(function(e) {
+          $("#latitude").value(lat);
+          $("#longitude").value(lon);
+          $("#true_submit").click();
         });
       });

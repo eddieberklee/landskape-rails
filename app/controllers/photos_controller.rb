@@ -16,9 +16,15 @@ class PhotosController < ApplicationController
   def create
     get_and_store_username()
     flash[:notice] = "success upload"
+    params[:photo][:latitude] = params[:latitude]
+    params[:photo][:longitude] = params[:longitude]
     @photo = Photo.new(params[:photo])
     @photo.user = @user
-    @photo.save
+    if @photo.save
+      ''
+    else
+      flash[:warning] = @photo.errors
+    end
     redirect_to photos_path
     return
   end

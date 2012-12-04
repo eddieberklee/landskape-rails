@@ -14,17 +14,51 @@ $green-text-color: #44aa22
   font-size: 16px
   font-weight: bold
 
+.blackout
+  width: 100%
+  height: 100%
+  position: absolute
+  z-index: 99
+  background-color: rgba(0,0,0,0.3)
+  visibility: hidden
+
 #select-location
-  $w: 400px
-  $h: 250px
+  $w: 550px
+  $h: 350px
   width: $w
-  height: $h
+  min-height: $h
+  padding: 5px
   position: absolute
   top: 50%
   left: 50%
-  margin-top: -($h / 2)
+  z-index: 100
+  margin-top: -($h / 1.5)
   margin-left: -($w / 2)
-  background-color: rgba(255,255,255,0.6)
+  background-color: rgba(0,0,0,0.8)
+  color: #fff
+  visibility: hidden
+
+  $button-width: 45px
+
+  h4
+    margin-top: 2px
+    margin-bottom: 5px
+  #fake_submit2
+    margin-top: 5px
+  #true_submit
+    margin-top: 5px
+    float: right
+  #geocoding_form
+    margin: 0
+  #address
+    width: $w - $button-width - 14px
+    @include css3-border-radius(0px)
+    margin: 0
+    float: left
+  #button
+    width: $button-width
+    @include css3-border-radius(0px)
+    float: left
 
 .logindiv
   float: left
@@ -163,6 +197,8 @@ $popup-padding-right: 10px
   height: 1px
   border-top: 1px solid #ccc
 
+#map
+  height: 330px
 
 #photo-popup-view
 #map-popup-view
@@ -297,9 +333,6 @@ $pic-thumb-height: 160px
 #upload-right
   background-color: #ddd
   padding: 10px
-  padding-top: 30px
-  padding-bottom: 30px
-  padding-left: 55px
 
 #img
   margin: 2px

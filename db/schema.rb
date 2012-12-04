@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.text     "city"
     t.text     "state"
     t.text     "description"
-    t.text     "file_location"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
