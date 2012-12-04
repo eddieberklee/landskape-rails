@@ -12,7 +12,7 @@
       %div.span12
         %h3
           Upload a Landskape
-      = form_for :upload_photo do |f|
+      = form_for Photo.new, :html=>{:multipart => true} do |f|
         %div.span5#upload-left{:style => "float:left;"}
           #upload-box
             #drag-and-drop
@@ -20,7 +20,7 @@
                 Drag and drop your landskape here!
             #file-browse
               -#%input{:type=>"file", :name => "uploaded_file", :style=>"margin-bottom:10px;"}
-              = f.file_field :file
+              = f.file_field :photo
               .clear
         %div.span4#upload-right{:style => "float:left;"}
           = f.label :Title
@@ -33,6 +33,9 @@
           = f.label :State
           = f.text_field :state
           %br
-          = f.submit :Upload, :class => "btn btn-warning"
+          %div#select-location
+            %h4
+              Select Approximate Location
+            = f.submit :Upload, :class => "btn btn-warning"
 
         .clear
