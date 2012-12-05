@@ -7,17 +7,25 @@
       Login
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
+    :css
+      body {
+        background: url("assets/snowmountain.jpeg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
   %body
     .container
       .vspacer15
       .clear
       #frontpage-icon
-        %img{:src => "assets/landskape_logo.png"}
+        %img{:src => "assets/landskape_logo_winter.png"}
         .mission-statement
           A place to find beautiful views around you.
       #fields
         %div.logindiv
-          %h1
+          %h1.index-shadow
             Login
           /.vspacer15
           %form#signup{:action=>"#{logins_path()}", :method=>"post", :style=>""}
@@ -36,7 +44,7 @@
               %input{:type=>"password", :name=>"password", :id=>"password", :maxlength=>"50"}
               %input.btn{:type=>"submit", :name=>"submit", :value=>"Login", :style=>"float: right;"}
         %div.logindiv
-          %h1
+          %h1.index-shadow
             Register
           %form#signup{:action=>"#{logins_path()}", :method=>"post"}
             %fieldset
