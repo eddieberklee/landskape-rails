@@ -26,11 +26,12 @@ $green-text-color: #44aa22
   width: 100%
   height: 24px
   line-height: 24px
-  background-color: rgba(0,0,0,0.7)
+  background-color: rgba(0,0,0,0.5)
   color: #eee
   position: absolute
   // top: -20px
   bottom: 0
+  opacity: 0
   @include css3-box-shadow(0,0,5px,rgba(0,0,0,0.4))
   .btn
     border: 1px solid black
@@ -42,12 +43,6 @@ $green-text-color: #44aa22
     i
       position: relative
       top: -4px
-  .comment-button
-    @include css3-box-shadow(0,0,6px,rgba(17,115,81,0.4))
-    float: right
-    top: 2px
-    margin-right: 1px
-    margin-left: 1px
   .like-button
     @include css3-box-shadow(0,0,6px,rgba(165,53,57,0.4))
     float: right
@@ -55,6 +50,9 @@ $green-text-color: #44aa22
     margin-left: 1px
     i
       top: -5px
+.pic-thumb-descr2
+  @extend .pic-thumb-descr
+  top: 0
 
 #select-location
   $w: 550px
