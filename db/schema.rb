@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.text     "file_location"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.string   "photo_file_file_name"
-    t.string   "photo_file_content_type"
-    t.integer  "photo_file_file_size"
-    t.datetime "photo_file_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", :force => true do |t|
