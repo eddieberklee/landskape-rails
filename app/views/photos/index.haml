@@ -6,10 +6,10 @@
       Photos
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
-    %script{:type=>"text/javascript", :src=>"http://hpneo.github.com/gmaps/prettify/prettify.js"}
   %body
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
+      -#%script{:type=>"text/javascript", :src=>"http://hpneo.github.com/gmaps/prettify/prettify.js"}
       = render :partial => "partial/filters_bar"
       %h3
         Viewing:
@@ -32,9 +32,9 @@
                 %span{:style=>"margin:5px;font-size:0.95em;"}
                   @
                   = User.find_by_id(photo.user_id).username
-                %span.like-button{:id=>"#{photo.id}"}
+                .like-button{:id=>"#{photo.id}"}
                   %a.btn
-                    - if Like.where("user_id = ? AND photo_id = ?", photo.user_id.to_i, photo.id.to_i).first == nil
+                    - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
                       %i.icon-thumbs-up
                     - else
                       %i.icon-thumbs-down
@@ -92,39 +92,39 @@
             Click on map to update pin's location.
     :javascript
       $(function() {
-        lat = 0;
-        lon = 0;
-        prettyPrint();
-        map = new GMaps({
-          div: '#map',
-          lat: -12.043333,
-          lng: -77.028333
-        });
+        //lat = 0;
+        //lon = 0;
+        ////prettyPrint();
+        //map = new GMaps({
+        //  div: '#map',
+        //  lat: -12.043333,
+        //  lng: -77.028333
+        //});
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
-          $this = $(this);
+          likebutton = $(this);
           $.ajax({
             url: "/add_like",
             data: {
               photo_id: photo_id,
-              user_id: "#{@user.id}"
-            }
-          }).done(function(data) {
-            alert(data);
-            likebutton = $this.children()[0].children()[0];
-            klass = $likebutton.attr('class');
-            if (klass == 'icon-thumbs-up') {
-              $likebutton.attr('class', 'icon-thumbs-down');
-            }
-            else {
-              $likebutton.attr('class', 'icon-thumbs-up');
+              user_id: "#{@user.id}",
+            },
+            success: function(data) {
+              icon = likebutton.children().children()
+              klass = icon.attr('class');
+              if (klass == 'icon-thumbs-up') {
+                icon.attr('class', 'icon-thumbs-down');
+              }
+              else {
+                icon.attr('class', 'icon-thumbs-up');
+              }
             }
           });
         });
         $(".pic-thumb-container .pic").click(function() {
           photo_id = $(this).parent().attr('id');
           $.ajax({
-            url: "/photoinfo/" + photo_id,
+            url: "#{root_path}photoinfo/" + photo_id,
           }).done(function(data) {
             console.log(data);
 
