@@ -41,14 +41,20 @@ class PhotosController < ApplicationController
     end
   end
 
+  def search_bar
+    get_and_store_username()
+    get_pics_by_location(params[:search_form][:latitude].to_f, params[:search_form][:longitude].to_f, 0.1)
+    return render :action => "index"
+  end
+
   def get_pics_by_location(lat, long, dist)
     max_expansions = 5
     curr_expansions = 1
     while curr_expansions <= max_expansions
       total_dist = dist * curr_expansions
-      @photos = Photo.order("created_at DESC") \
-        .where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?", \
-               lat - total_dist, lat + total_dist, long - total_dist, long + total_dist)
+      @photos = Photo.order("created_at DESC")
+      @photos = @photos.where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?", \
+                              lat - total_dist, lat + total_dist, long - total_dist, long + total_dist)
       if @photos.first
         break
       end
