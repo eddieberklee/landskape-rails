@@ -30,23 +30,8 @@ class LikesController < ApplicationController
   end
 
   def add_like
-    res = { :like_created => false }
-    if Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).first == nil
-      if Like.create(params)
-        res[:like_created] = true
-      end
-    else
-      Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).destroy_all
-      res[like_created] = false
-    end
-    puts res.to_json
-    respond_to do |format|
-      format.json { render :json => res.to_json }
-    end
-#respond_to do |format|
-#      format.json { render :json => res.to_json }
-#    end
-    true.to_json
+    answer = "false"
+    @res = answer.to_json
     return
   end
   

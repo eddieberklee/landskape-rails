@@ -99,14 +99,14 @@
           photo_id = $(this).attr('id');
           $this = $(this);
           $.ajax({
-            url: "#{add_like_path}",
+            url: "/add_like",
             data: {
               photo_id: photo_id,
               user_id: "#{@user.id}"
             }
           }).done(function(data) {
             alert(data);
-            likebutton = $this.child(0).child(0);
+            likebutton = $this.children()[0].children()[0];
             klass = $likebutton.attr('class');
             if (klass == 'icon-thumbs-up') {
               $likebutton.attr('class', 'icon-thumbs-down');
@@ -146,6 +146,7 @@
                 comments_array[i]["comment_text"] + 
                 "</span>");
             }
+            console.log(data["photos"]);
           });
         });
       });

@@ -11,10 +11,12 @@ class PhotosController < ApplicationController
     data[:likes] = photo.likes.length
     data[:large_photo] = photo.photo.url(:large)
     data[:photo] = photo
+    get_pics_by_location(photo.latitude, photo.longitude, 0.1)
+    data[:photos] = @photos
     data[:username] = User.find_by_id(photo.user_id).username
     @ret = data.to_json
     respond_to do |format|
-      format.json { render :json => @ret}
+      format.json { render :json => @ret }
     end
   end
 
