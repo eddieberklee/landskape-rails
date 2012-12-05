@@ -19,86 +19,25 @@
           Previous Page
         %button
           Next Page
-      -#- for p in @photos do
-      %div.column1
-        %div.pic-thumb-container{:style=>"position:relative;"}
-          %div.pic-thumb#pic-1
-            %div.pic-thumb-hover-content
-              %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-              %a.comment-button.btn.filters-text
-                comment
+      %div.all_pictures
+        - @photos.each do |photo|
+          %div.pic-thumb-container{:style=>"position:relative;"}
+            %div.pic-thumb{:id=>"#{photo.id}"}
+              %img.pic{:src => "#{root_url}/#{photo.photo_file_file_name}", :class => "pic"}
+            %div.pic-thumb-descr2
+              %span{:style=>"margin:5px;"}
+                = photo.title
+            %div.pic-thumb-descr
+              %span{:style=>"margin:5px;font-size:0.95em;"}
+                @
+                = User.find_by_id(photo.user_id).username
+              %span.like-button{:id=>"#{photo.id}"}
+                %a.btn
+                  - if Like.where("user_id = ? AND photo_id = ?", photo.user_id, photo.id).first == nil
+                    %i.icon-thumbs-up
+                  - else
+                    %i.icon-thumbs-down
               .clear
-            %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
-          %div.pic-thumb-descr2
-            %span{:style=>"margin:5px;"}
-              Title Blah Blah
-          %div.pic-thumb-descr
-            %span{:style=>"margin:5px;font-size:0.95em;"}
-              @username
-            %span.like-button
-              %a.btn
-                %i.icon-thumbs-up
-            .clear
-        %div.pic-thumb#pic-2
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
-        %div.pic-thumb#pic-3
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
-
-      %div.column2
-        %div.pic-thumb#pic-4
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
-        %div.pic-thumb#pic-5
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
-        %div.pic-thumb#pic-6
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
-
-      %div.column3
-        %div.pic-thumb#pic-7
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
-        %div.pic-thumb#pic-8
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
-        %div.pic-thumb#pic-9
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
       .clear
     .black-background#photo-popup-view
       .black-background-specific
@@ -151,6 +90,36 @@
             Drag pin to update the landskape's location.
             %a.btn.btn-warning#update-location{:style=>"width:130px;margin:0 auto;position:relative;top:100px;display:block;"}
               Update Location
+    :javascript
+      $(function() {
+        $(".pic-thumb-container .like-button").click(function() {
+          photo_id = $(this).attr('id');
+          $this = $(this);
+          $.ajax({
+            url: "#{add_like_path}",
+            data: {
+              photo_id: photo_id,
+              user_id: "#{@user.id}"
+            }
+          }).done(function(data) {
+            alert(data);
+            likebutton = $this.child(0).child(0);
+            klass = $likebutton.attr('class');
+            if (klass == 'icon-thumbs-up') {
+              $likebutton.attr('class', 'icon-thumbs-down');
+            }
+            else {
+              $likebutton.attr('class', 'icon-thumbs-up');
+            }
+          });
+        });
+        //$(".pic-thumb-container .pic").click(function() {
+        //  $.ajax({
+        //    url: "",
+        //  }).done(function() {
+        //  });
+        //});
+      });
 
 
 

@@ -12,5 +12,6 @@ Landskape::Application.routes.draw do
   resources :user
 
   match "photos/search" => "photos#search_bar", :as => :photo_search
+  match "likes/add_like" => "likes#add_like", :as => :add_like
 
 end
