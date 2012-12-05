@@ -1,0 +1,12 @@
+development:
+  bucket: landskape-pictures
+  access_key_id: AKIAJZMC46TST3BTHQIA
+  secret_access_key: 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
+test:
+  bucket: landskape-pictures
+  access_key_id: AKIAJZMC46TST3BTHQIA
+  secret_access_key: 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
+production:
+  bucket: landskape-pictures
+  access_key_id: AKIAJZMC46TST3BTHQIA
+  secret_access_key: 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

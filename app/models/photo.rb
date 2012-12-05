@@ -12,6 +12,9 @@ class Photo < ActiveRecord::Base
   has_many :likes
   belongs_to :user
 
-  has_attached_file :photo
+  has_attached_file :photo,
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
+    :path => "/:id/:filename",
 
 end
