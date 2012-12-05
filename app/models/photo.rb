@@ -19,6 +19,6 @@ class Photo < ActiveRecord::Base
         :large => "700x500"
     },
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :path => "/:id/:filename",
+    :path => "/:id/:filename"
 
 end
