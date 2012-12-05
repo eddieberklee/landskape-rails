@@ -1,6 +1,11 @@
 $(function() {
   $(".black-background").hide();
   // document.ready() opening
+  
+  $(".black-background-specific").click(function() {
+    $(".black-background").hide();
+    $(".popin").hide();
+  });
 
   t=150;
   $(".pic-thumb-container").hover(
@@ -90,5 +95,10 @@ $(function() {
     $("#update-location").click(function() {
 			$("#map-popup-view").hide();
     });
+    $(".popin").css('visibility','visible');
+    $(".popin").css('position','absolute');
+    $(".popin").css('top','200px');
+    $(".popin").css('left','130px');
+    $(".popin").css('z-index','200');
   });
 });
