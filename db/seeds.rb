@@ -345,7 +345,9 @@ photos.push({ # #30
             :longitude => -95
             })
 photos.each do |p|
-  created_photo = Photo.create(p)
+  created_photo = Photo.new(p)
+  created_photo.photo = p[:photo]
+  created_photo.save
   puts "Created photo", created_photo.photo_file_name
 end
 
