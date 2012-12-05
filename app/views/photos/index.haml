@@ -21,7 +21,7 @@
           Next Page
       -#- for p in @photos do
       %div.column1
-        %div{:style=>";position:relative;"}
+        %div.pic-thumb-container{:style=>"position:relative;"}
           %div.pic-thumb#pic-1
             %div.pic-thumb-hover-content
               %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
@@ -29,17 +29,15 @@
                 comment
               .clear
             %img.pic.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %div.pic-thumb-descr2
+            %span{:style=>"margin:5px;"}
+              Title Blah Blah
           %div.pic-thumb-descr
-            %span{:style=>"margin:5px;"}
-              Hi
-            %span{:style=>"margin:5px;"}
-              Hi
+            %span{:style=>"margin:5px;font-size:0.95em;"}
+              @username
             %span.like-button
               %a.btn
-                %i.icon-heart
-            %span
-              %a.btn.comment-button
-                %i.icon-comment
+                %i.icon-thumbs-up
             .clear
         %div.pic-thumb#pic-2
           %div.pic-thumb-hover-content

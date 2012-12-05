@@ -44,7 +44,7 @@
           %button.btn#fake_submit
             Upload
           = f.submit :Upload, :class => "btn btn-warning", :id=>"true_submit"
-          .error-message
+          .error-message{:style=>"margin-top:5px;"}
       %div#select-location
         %form#geocoding_form{:method=>"post"}
           %h4

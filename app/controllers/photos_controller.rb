@@ -46,8 +46,8 @@ class PhotosController < ApplicationController
     curr_expansions = 1
     while curr_expansions <= max_expansions
       total_dist = dist * curr_expansions
-      @photos = Photo.order("created_at DESC")\
-        .where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?",\
+      @photos = Photo.order("created_at DESC") \
+        .where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?", \
                lat - total_dist, lat + total_dist, long - total_dist, long + total_dist)
       if @photos.first
         break
