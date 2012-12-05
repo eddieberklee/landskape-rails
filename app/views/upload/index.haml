@@ -16,20 +16,14 @@
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
       %div.span12
-        %h3
-          Upload a Landskape
       = form_for Photo.new, :html=>{:multipart => true} do |f|
-        %div.span5#upload-left{:style => "float:left;"}
-          #upload-box
-            #drag-and-drop
-              %span{:style=>"position:relative;top:80px;left:35px;font-size:1.2em;width:200px;"}
-                Preview your photo here.
-            #file-browse
-              = f.file_field :photo
-              .clear
-        %div.span4#upload-right{:style => "float:left;"}
+        %div.span4#upload-inset
+          %h3
+            Upload a Landskape
           %input{:type=>"hidden", :id=>"latitude", :name=>"latitude"}
           %input{:type=>"hidden", :id=>"longitude", :name=>"longitude"}
+          = f.label :File
+          = f.file_field :photo
           = f.label :Title
           = f.text_field :title
           = f.label :Description
@@ -40,7 +34,7 @@
           = f.label :State
           = f.text_field :state
           %br
-          %button.btn#fake_submit
+          %button.btn.btn-warning#fake_submit{:style => "margin-left:250px"}
             Upload
           = f.submit :Upload, :class => "btn btn-warning", :id=>"true_submit"
           .error-message{:style=>"margin-top:5px;"}
@@ -55,7 +49,7 @@
             .clear
         %div.popin
           %div#map
-        %button.btn#fake_submit2
+        %button.btn.btn-warning#fake_submit2
           Upload
 
         .clear
