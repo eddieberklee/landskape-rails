@@ -34,7 +34,7 @@
                   = User.find_by_id(photo.user_id).username
                 %span.like-button{:id=>"#{photo.id}"}
                   %a.btn
-                    - if Like.where("user_id = ? AND photo_id = ?", photo.user_id, photo.id).first == nil
+                    - if Like.where("user_id = ? AND photo_id = ?", photo.user_id.to_i, photo.id).first == nil
                       %i.icon-thumbs-up
                     - else
                       %i.icon-thumbs-down
