@@ -21,13 +21,26 @@
           Next Page
       -#- for p in @photos do
       %div.column1
-        %div.pic-thumb#pic-1
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
+        %div{:style=>";position:relative;"}
+          %div.pic-thumb#pic-1
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %div.pic-thumb-descr
+            %span{:style=>"margin:5px;"}
+              Hi
+            %span{:style=>"margin:5px;"}
+              Hi
+            %span.like-button
+              %a.btn
+                %i.icon-heart
+            %span
+              %a.btn.comment-button
+                %i.icon-comment
             .clear
-          %img.pic.pic{:src => "assets/greenery.jpg", :class => "pic"}
         %div.pic-thumb#pic-2
           %div.pic-thumb-hover-content
             %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}

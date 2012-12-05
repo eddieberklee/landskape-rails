@@ -111,6 +111,10 @@
             return false;
           }
         }
+        $(".blackout").click(function() {
+          $(this).css('visibility','hidden');
+          $("#select-location").css('visibility','hidden');
+        });
         $("#fake_submit").click(function(e) {
           e.preventDefault();
           if (!invalid_inputs()) {

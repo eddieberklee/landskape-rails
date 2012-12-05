@@ -14,16 +14,18 @@
 ActiveRecord::Schema.define(:version => 20121204010742) do
 
   create_table "comments", :force => true do |t|
-    t.integer "user_id"
-    t.integer "photo_id"
-    t.text    "comment_text"
-    t.timestamps
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.text     "comment_text"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "likes", :force => true do |t|
-    t.text "user_id"
-    t.text "photo_id"
-    t.timestamps
+    t.text     "user_id"
+    t.text     "photo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -32,25 +34,28 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
     t.text     "city"
     t.text     "state"
     t.text     "description"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.text     "file_location"
     t.float    "latitude"
     t.float    "longitude"
-    t.timestamps
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "photo_file_file_name"
+    t.string   "photo_file_content_type"
+    t.integer  "photo_file_file_size"
+    t.datetime "photo_file_updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.text "username"
-    t.text "city"
-    t.text "state"
-    t.text "bio"
-    t.float "latitude"
-    t.float "longitude"
-    t.text "password_hash"
-    t.text "password_salt"
-    t.timestamps
+    t.text     "username"
+    t.text     "city"
+    t.text     "state"
+    t.text     "bio"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "password_hash"
+    t.text     "password_salt"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

@@ -23,6 +23,40 @@ $green-text-color: #44aa22
   background-color: rgba(0,0,0,0.3)
   visibility: hidden
 
+.pic-thumb-descr
+  width: 100%
+  height: 24px
+  line-height: 24px
+  background-color: rgba(0,0,0,0.7)
+  color: #eee
+  position: absolute
+  // top: -20px
+  bottom: 0
+  @include css3-box-shadow(0,0,5px,rgba(0,0,0,0.4))
+  .btn
+    border: 1px solid black
+    height: 10px
+    position: relative
+    top: -1px
+    padding-left: 3px
+    padding-right: 3px
+    i
+      position: relative
+      top: -4px
+  .comment-button
+    @include css3-box-shadow(0,0,6px,rgba(17,115,81,0.4))
+    float: right
+    top: 2px
+    margin-right: 1px
+    margin-left: 1px
+  .like-button
+    @include css3-box-shadow(0,0,6px,rgba(165,53,57,0.4))
+    float: right
+    margin-right: 2px
+    margin-left: 1px
+    i
+      top: -5px
+
 #select-location
   $w: 550px
   $h: 350px
@@ -282,7 +316,7 @@ $pic-thumb-height: 160px
   height: $pic-thumb-height
   position: relative
   overflow: hidden
-  margin-bottom: 20px
+  margin-bottom: 24px
   cursor: pointer
   @include css3-box-shadow(0px,0px,6px,rgba(0,0,0,0.35))
   img.pic

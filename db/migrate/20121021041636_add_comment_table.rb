@@ -4,6 +4,8 @@ class AddCommentTable < ActiveRecord::Migration
       t.integer    'user_id'
       t.integer    'photo_id'
       t.text       'comment_text'
+      t.datetime "created_at", :null => false
+      t.datetime "updated_at", :null => false
     end
   end
 
