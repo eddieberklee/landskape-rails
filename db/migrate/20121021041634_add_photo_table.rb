@@ -1,7 +1,7 @@
 class AddPhotoTable < ActiveRecord::Migration
   def up
     create_table 'photos' do |t|
-      t.text    'user_id'
+      t.integer    'user_id'
       t.text    'title'
       t.text    'city'
       t.text    'state'
