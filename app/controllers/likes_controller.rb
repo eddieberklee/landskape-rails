@@ -33,7 +33,7 @@ class LikesController < ApplicationController
     res = { :like_created => false }
     if Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).first == nil
       if Like.create(params)
-        res[like_created] = true
+        res[:like_created] = true
       end
     else
       Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).destroy_all
@@ -43,6 +43,11 @@ class LikesController < ApplicationController
     respond_to do |format|
       format.json { render :json => res.to_json }
     end
+#respond_to do |format|
+#      format.json { render :json => res.to_json }
+#    end
+    true.to_json
+    return
   end
   
 end
