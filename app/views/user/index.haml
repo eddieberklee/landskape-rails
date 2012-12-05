@@ -13,7 +13,7 @@
       = @photos
       %h3
         #{@user.username}'s photos
-      %span{:style =>"font-size:14px;font-weight:bold;"}
+      %div{:style =>"font-size:14px;font-weight:bold;margin-left:15px"}
         %div{:style=>"padding-top: 0px; padding-bottom: 0px"}
           More Info about #{@user.username}:
         .user-bio{:style => "height: 0px;"}
@@ -21,120 +21,126 @@
         .show-bar{:style=>"position:relative;left:0px;margin-bottom:10px;"}
           .btn#showbutton
             show
-      %div
-        %button
+      %div{:style => "margin-left:10px"}
+        %button#prev-page
           Previous Page
-        %button
+        %button#next-page
           Next Page
       -#- for p in @photos do
-      %div.column1
-        %div.pic-thumb#pic-1
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic.pic{:src => "assets/greenery.jpg", :class => "pic"}
-        %div.pic-thumb#pic-2
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
-        %div.pic-thumb#pic-3
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
-
-      %div.column2
-        %div.pic-thumb#pic-4
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
-        %div.pic-thumb#pic-5
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
-        %div.pic-thumb#pic-6
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic.pic{:src => "assets/forest_path.jpg", :class => "pic"}
-
-      %div.column3
-        %div.pic-thumb#pic-7
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
-        %div.pic-thumb#pic-8
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
-        %div.pic-thumb#pic-9
-          %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
-            %a.comment-button.btn.filters-text
-              comment
-            .clear
-          %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
-      .clear
-    .black-background#photo-popup-view
-      .black-background-specific
-      .popup
-        .popup-left
-          %img{:src=>"assets/lake_fall.jpg"}
-        .popup-right
-          %div.popup-username-like
-            %div.popup-username
-              %a{:href=>"/user", :style=>"font-size:1.1em;"}
-                amadeus
-            %div.popup-like
-              %img.heart{:src=>"assets/heart_unselected.png"}
-              %span.like-count
-                12
-          %div.popup-location
-            %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
-              Berkeley, CA&nbsp;&nbsp;&nbsp;
-              %img{:src=>"assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
-          %div.popup-description
-            "Beautiful lake with a nice view of the fall leaf colors."
-          .vspacer15
-          .hr-divider
-          %div.popup-comment-box
-            .popup-comment
-              %span.popup-comment-username
-                %a{:href=>"/userchopin"}
-                  &nbsp;chopin:
-              %span.popup-comment-text
-                Looks inspiring for composing music!
-            .popup-comment
-              %span.popup-comment-username
-                %a{:href=>"/userliszt"}
-                  &nbsp;liszt:
-              %span.popup-comment-text
-                Red, yellow, orange colors look sick.
-            %div.popup-comment-input
-              %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
-              %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
+      %div#photo-container
+        %div.column1
+          %div.pic-thumb#pic-1
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
                 comment
+              .clear
+            %img.pic.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %div.pic-thumb#pic-2
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+          %div.pic-thumb#pic-3
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+
+        %div.column2
+          %div.pic-thumb#pic-4
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+          %div.pic-thumb#pic-5
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %div.pic-thumb#pic-6
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+
+        %div.column3
+          %div.pic-thumb#pic-7
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+          %div.pic-thumb#pic-8
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+          %div.pic-thumb#pic-9
+            %div.pic-thumb-hover-content
+              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %a.comment-button.btn.filters-text
+                comment
+              .clear
+            %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
+        .clear
+      .black-background#photo-popup-view
+        .black-background-specific
+        .popup
+          .popup-left
+            %img{:src=>"assets/lake_fall.jpg"}
+          .popup-right
+            %div.popup-username-like
+              %div.popup-username
+                %a{:href=>"/user", :style=>"font-size:1.1em;"}
+                  amadeus
+              %div.popup-like
+                %img.heart{:src=>"assets/heart_unselected.png"}
+                %span.like-count
+                  12
+            %div.popup-location
+              %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
+                Berkeley, CA&nbsp;&nbsp;&nbsp;
+                %img{:src=>"assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
+            %div.popup-description
+              "Beautiful lake with a nice view of the fall leaf colors."
+            .vspacer15
+            .hr-divider
+            %div.popup-comment-box
+              .popup-comment
+                %span.popup-comment-username
+                  %a{:href=>"/userchopin"}
+                    &nbsp;chopin:
+                %span.popup-comment-text
+                  Looks inspiring for composing music!
+              .popup-comment
+                %span.popup-comment-username
+                  %a{:href=>"/userliszt"}
+                    &nbsp;liszt:
+                %span.popup-comment-text
+                  Red, yellow, orange colors look sick.
+              %div.popup-comment-input
+                %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
+                %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
+                  comment
+      %div{:style => "margin-left:10px;"}
+        %button#prev-page
+          Previous Page
+        %button#next-page
+          Next Page
     .black-background#map-popup-view
       .black-background-specific
       .popup
