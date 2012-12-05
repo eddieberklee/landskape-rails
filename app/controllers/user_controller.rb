@@ -9,7 +9,7 @@ class UserController < ApplicationController
     get_users_photos(1)
     if params[:success] != nil
       @display_status = true;
-      @status = params[:success] ? "Uploaded photo successfully" : "Failed to upload photo. Try again."
+      @status = params[:success] != 'false' ? "Uploaded photo successfully" : "Failed to upload photo. Try again."
     end
   end
 

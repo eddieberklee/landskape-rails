@@ -20,8 +20,8 @@
         %div.span4#upload-inset
           %h3
             Upload a Landskape
-          %input{:type=>"hidden", :id=>"latitude", :name=>"latitude"}
-          %input{:type=>"hidden", :id=>"longitude", :name=>"longitude"}
+          = f.hidden_field :latitude
+          = f.hidden_field :longitude
           = f.label :File
           = f.file_field :photo
           = f.label :Title
@@ -58,7 +58,7 @@
         $tr = $("#true_submit");
         $tr.css('visibility','hidden');
         lat = 0;
-        lon = 0;
+        lng = 0;
         prettyPrint();
         map = new GMaps({
           div: '#map',
@@ -76,7 +76,7 @@
             }
           });
           lat = event.latLng.lat();
-          lon = event.latLng.lng();
+          lng = event.latLng.lng();
         });
         $('#geocoding_form').submit(function(e){
           e.preventDefault();
@@ -90,6 +90,8 @@
                   lat: latlng.lat(),
                   lng: latlng.lng()
                 });
+                lat = latlng.lat();
+                lng = latlng.lng();
               }
             }
           });
@@ -120,12 +122,12 @@
           }
         });
         $("#fake_submit2").click(function(e) {
-          $("#latitude").val(lat);
-          $("#longitude").val(lon);
+          $("#photo_latitude").val(lat);
+          $("#photo_longitude").val(lng);
           console.log(lat);
-          console.log($("#latitude"));
-          console.log(lon);
-          console.log($("#longitude"));
+          console.log($("#photo_latitude"));
+          console.log(lng);
+          console.log($("#photo_longitude"));
           $("#true_submit").click();
         });
       });
