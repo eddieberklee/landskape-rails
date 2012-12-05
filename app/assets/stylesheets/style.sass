@@ -5,6 +5,12 @@
 
 $filters-background: #eee
 $green-text-color: #44aa22
+$inset-green: #343
+
+#signup
+  width: 300px
+  background-color: $inset-green
+  padding: 10px
 
 .error-message
   color: red
@@ -117,9 +123,8 @@ $filters-text-font-size: 12.5px
 
 #filters-bar
   width: 890px
-  color: black
   //background-color: darken($filters-background,5%)
-  background-color: #f5f5f5
+  background-color: $inset-green
   padding-top:    7px
   padding-bottom: 7px
   @include css3-border-radius(6px)
@@ -268,9 +273,7 @@ $popup-padding-right: 10px
   height: 20px
   margin-right: 10px
   margin-top: 30px
-#search
-#upload
-#login-logout
+
 #who-logged-in
   margin-top: 35px
 // STYLE.SASS
@@ -390,7 +393,7 @@ $pic-thumb-height: 160px
   width: 770px
   overflow: hidden
   border-radius: 5px 5px 0px 0px
-  background-color: #343
+  background-color: $inset-green
 
 .show-bar
   background-color: #121
