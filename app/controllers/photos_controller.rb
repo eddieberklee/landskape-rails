@@ -21,6 +21,7 @@ class PhotosController < ApplicationController
   def index
     get_and_store_username()
     get_pics_by_location(@user.latitude, @user.longitude, 0.1)
+    @viewing = "Photos Around Me"
   end
 
   def new
@@ -58,6 +59,7 @@ class PhotosController < ApplicationController
   def search_bar
     get_and_store_username()
     get_pics_by_location(params[:search_form][:latitude].to_f, params[:search_form][:longitude].to_f, 0.1)
+    @viewing = params[:search_form][:query]
     return render :action => "index"
   end
 
