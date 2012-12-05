@@ -2,7 +2,7 @@
 %script{:type=>"text/javascript", :src=>"https://raw.github.com/HPNeo/gmaps/master/gmaps.js"}
 #navbar
   %a{:href => "#{photos_path()}"}
-    = image_tag "landskape_logo.png", :html=>{:id => "logo"}
+    = image_tag "landskape_logo.png", :id => "logo"
   %div.float-right{:style=>"margin-right:40px;"}
     %div#search
       = form_for 'search_form', :url => photo_search_path(), :html => {:id => 'search_form', :class => "form-search"} do |f|
