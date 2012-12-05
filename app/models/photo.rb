@@ -14,6 +14,10 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :photo,
     :storage => :s3,
+    :style => {
+        :small => "280x240",
+        :large => "700x500"
+    },
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :path => "/:id/:filename",
 
