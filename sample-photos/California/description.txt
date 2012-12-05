@@ -1,0 +1,11 @@
+Description of the photos:
+
+img_001: Golden Gate Bridge. Taken in San Francisco, California, United States
+
+img_002: Beautiful napa valley landscape. Taken in Napa, California, United States
+
+img_003: Aerial of snowy mountain landscape with frozen lake in Inyo National Forest. Taken in California, United States
+
+img_004: Night view of San Francisco. Taken in San Francisco, California, United States
+
+img_005: Fall Landscape. Taken in Yosemite Park, California, United States

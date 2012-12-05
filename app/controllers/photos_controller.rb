@@ -22,8 +22,7 @@ class PhotosController < ApplicationController
     else
       flash[:warning] = @photo.errors
     end
-    redirect_to photos_path
-    return
+    redirect_to user_index_path()
   end
 
   def edit

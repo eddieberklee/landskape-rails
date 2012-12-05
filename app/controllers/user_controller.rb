@@ -32,7 +32,7 @@ class UserController < ApplicationController
   end
 
   def get_users_photos(page)
-    @photos = Photo.order("created_at DESC").where(:user_id => 1).eager_load_values
+    @photos = Photo.order("created_at DESC").where(:user_id => 1)
     if !@photos.first
       @photo_error = "No uploaded photos."
     end

@@ -45,7 +45,7 @@
             Upload
           = f.submit :Upload, :class => "btn btn-warning", :id=>"true_submit"
       %div#select-location
-        %form{:method=>"post", :id=>"geocoding_form"}
+        %form#geocoding_form{:method=>"post"}
           %h4
             Pinpoint a Location:
           %div.input
@@ -106,6 +106,8 @@
         });
         $("#fake_submit").click(function(e) {
           e.preventDefault();
+          $("#address").attr("value", $("#photo_city").attr("value") + ", " + $("#photo_state").attr("value"));
+          $("#geocoding_form").submit();
           $("#select-location").css('visibility','visible');
           $(".blackout").css('visibility','visible');
         });

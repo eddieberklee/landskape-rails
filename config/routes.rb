@@ -12,5 +12,4 @@ Landskape::Application.routes.draw do
   resources :upload
   resources :user
 
-  resources :my_records
 end
