@@ -1,10 +1,16 @@
 @import "bootstrap"
 @import "css3_mixins"
-@import "variables"
 @import "vspacer_num"
 @import "css3_mixins"
 
+$filters-background: #eee
 $green-text-color: #44aa22
+$inset-green: #343
+
+#signup
+  width: 300px
+  background-color: $inset-green
+  padding: 10px
 
 .error-message
   color: red
@@ -21,6 +27,38 @@ $green-text-color: #44aa22
   z-index: 99
   background-color: rgba(0,0,0,0.3)
   visibility: hidden
+
+.pic-thumb-descr
+  width: 100%
+  height: 24px
+  line-height: 24px
+  background-color: rgba(0,0,0,0.5)
+  color: #eee
+  position: absolute
+  // top: -20px
+  bottom: 0
+  opacity: 0
+  @include css3-box-shadow(0,0,5px,rgba(0,0,0,0.4))
+  .btn
+    border: 1px solid black
+    height: 10px
+    position: relative
+    top: -1px
+    padding-left: 3px
+    padding-right: 3px
+    i
+      position: relative
+      top: -4px
+  .like-button
+    @include css3-box-shadow(0,0,6px,rgba(165,53,57,0.4))
+    float: right
+    margin-right: 2px
+    margin-left: 1px
+    i
+      top: -5px
+.pic-thumb-descr2
+  @extend .pic-thumb-descr
+  top: 0
 
 #select-location
   $w: 550px
@@ -83,7 +121,7 @@ $filters-text-font-size: 12.5px
 #filters-bar
   width: 890px
   //background-color: darken($filters-background,5%)
-  background-color: #f5f5f5
+  background-color: $inset-green
   padding-top:    7px
   padding-bottom: 7px
   @include css3-border-radius(6px)
@@ -199,6 +237,7 @@ $popup-padding-right: 10px
 
 #map
   height: 330px
+  margin-top: 10px
 
 #photo-popup-view
 #map-popup-view
@@ -232,9 +271,7 @@ $popup-padding-right: 10px
   height: 20px
   margin-right: 10px
   margin-top: 30px
-#search
-#upload
-#login-logout
+
 #who-logged-in
   margin-top: 35px
 // STYLE.SASS
@@ -248,14 +285,20 @@ $popup-padding-right: 10px
 .float-right
   float: right
 
+$beauty-back-green: #2A332A
+
 body
   // background-color: #fff
-  background-color: $filters-background
+  background-color: $beauty-back-green
+  color: white
+
 $green: #008800
+
 a
   color: $green
   &:hover
     color: darken($green, 15%)
+
 h3
   padding-left: 10px
 
@@ -281,7 +324,7 @@ $pic-thumb-height: 160px
   height: $pic-thumb-height
   position: relative
   overflow: hidden
-  margin-bottom: 20px
+  margin-bottom: 24px
   cursor: pointer
   @include css3-box-shadow(0px,0px,6px,rgba(0,0,0,0.35))
   img.pic
@@ -348,12 +391,12 @@ $pic-thumb-height: 160px
   width: 770px
   overflow: hidden
   border-radius: 5px 5px 0px 0px
-  background-color: #f5f5f5
+  background-color: $inset-green
 
 .show-bar
+  background-color: #121
   margin: 0px
   padding:  0px
-  background-color: #ddd
   border-radius: 0px 0px 5px 5px
   //border:
   height: 15px

@@ -20,7 +20,7 @@
           %h1
             Login
           /.vspacer15
-          %form{:id=>"login", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
+          %form#signup{:action=>"#{logins_path()}", :method=>"post", :style=>""}
             %fieldset
               If you already have an account, sign in!
               %hr
@@ -38,7 +38,7 @@
         %div.logindiv
           %h1
             Register
-          %form{:id=>"signup", :action=>"#{logins_path()}", :method=>"post", :style=>"width:300px;background-color:#ddd;padding:10px;"}
+          %form#signup{:action=>"#{logins_path()}", :method=>"post"}
             %fieldset
               Sign up to view the content on the site.
               %hr

@@ -2,16 +2,24 @@ $(function() {
   $(".black-background").hide();
   // document.ready() opening
 
-  $(".pic-thumb").hover(
+  t=150;
+  $(".pic-thumb-container").hover(
     function() {
-      id = $(this).attr('id');
-      $(this).stop(id, true, false);
-      $(this).children(".pic-thumb-hover-content").stop().animate({
-        bottom: '0px',
-        queue: id
-      },200);
+      $(this).children(".pic-thumb-descr").stop().animate({
+        opacity: '1',
+      },t);
+      $(this).children(".pic-thumb-descr2").stop().animate({
+        opacity: '1',
+      },t);
     },
     function() {
+      $(this).children(".pic-thumb-descr").stop().animate({
+        opacity: '0',
+      },t);
+      $(this).children(".pic-thumb-descr2").stop().animate({
+        opacity: '0',
+      },t);
+      /*
       id = $(this).attr('id');
       $height = $(this).children(".pic-thumb-hover-content").css('height');
       $padding_top = $(this).children(".pic-thumb-hover-content").css('padding-top');
@@ -21,6 +29,7 @@ $(function() {
         bottom: '-' + (parseInt($height) + parseInt($padding_top) + parseInt($padding_bottom)),
         queue: id
       },200);
+      */
     });
 
   $(".pic-thumb-hover-content img").click(function() {

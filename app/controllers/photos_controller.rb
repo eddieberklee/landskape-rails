@@ -18,11 +18,11 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     @photo.user = @user
     if @photo.save
-      ''
+      params[:success] = true
     else
-      flash[:warning] = @photo.errors
+      params[:success] = false
     end
-    redirect_to user_index_path()
+    redirect_to :controller => "user", :action => "index", :success => params[:success]
   end
 
   def edit
@@ -46,8 +46,8 @@ class PhotosController < ApplicationController
     curr_expansions = 1
     while curr_expansions <= max_expansions
       total_dist = dist * curr_expansions
-      @photos = Photo.order("created_at DESC")\
-        .where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?",\
+      @photos = Photo.order("created_at DESC") \
+        .where("latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?", \
                lat - total_dist, lat + total_dist, long - total_dist, long + total_dist)
       if @photos.first
         break
