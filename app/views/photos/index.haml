@@ -46,7 +46,7 @@
       .black-background-specific
       .popup
         .popup-left
-          %img{:src=>"#{root_url}/assets/lake_fall.jpg"}
+          %img.picpic{:src=>"#{root_url}/assets/lake_fall.jpg"}
         .popup-right
           %div.popup-username-like
             %div.popup-username
@@ -80,17 +80,29 @@
               %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
               %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
                 comment
+    %div.popin{:style=>"visibility:hidden;"}
+      %div#map{:style=>"width:400px;"}
+      %div#map2
     .black-background#map-popup-view
       .black-background-specific
       .popup
         .popup-left
-          %img{:src=>"#{root_url}/assets/map.png"}
         .popup-right
-          .map-pin{:style=>"cursor:pointer;"}
           .map-describe{:style=>"color:#000;"}
             Click on map to update pin's location.
     :javascript
-      $(function() {
+      $(document).ready(function() {
+        map = new GMaps({
+          div: '#map',
+          lat: -12.043333,
+          lng: -77.028333,
+        });
+        map.addMarker({
+          lat: 20,
+          lng: 30,
+        });
+        $("#map").css('width','516px');
+        $("#map").css('height','340px');
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
           $this = $(this);
@@ -128,7 +140,7 @@
             title = data["photo"]["title"];
             username = data["username"]
 
-            $(".popup-left img").attr('src',large_photo_url);
+            $(".popup-left img.picpic").attr('src',large_photo_url);
             $(".popup-right .like-count").text(number_likes.toString());
             $(".popup-right .map-popup").text(city + ", " + state);
             $(".popup-right .popup-username a").text(username);
