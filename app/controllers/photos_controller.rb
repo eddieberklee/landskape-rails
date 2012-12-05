@@ -18,11 +18,11 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     @photo.user = @user
     if @photo.save
-      ''
+      params[:success] = true
     else
-      flash[:warning] = @photo.errors
+      params[:success] = false
     end
-    redirect_to user_index_path()
+    redirect_to :controller => "user", :action => "index", :success => params[:success]
   end
 
   def edit

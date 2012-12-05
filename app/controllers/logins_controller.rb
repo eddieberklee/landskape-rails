@@ -40,7 +40,11 @@ class LoginsController < ActionController::Base
         redirect_to photos_url
       else
         @signup_fail = true
-        @error_message = "Someone with the same username already exists. Choose a new one."
+        if User.find_by_username(params[:username]) != nil
+          @error_message = "Someone with that username already exists";
+        else
+          @error_message = "Could not create user. Make sure your username is 3 digits long and you filled in all the fields."
+        end
         return render :action => "index"
       end
     end

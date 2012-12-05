@@ -10,7 +10,10 @@
   %body
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
-      = @photos
+      - if @display_status
+        .error-message
+          = @status
+      -#= @photos
       %h3
         #{@user.username}'s photos
       %div{:style =>"font-size:14px;font-weight:bold;margin-left:15px"}

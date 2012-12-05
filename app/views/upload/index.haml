@@ -44,6 +44,7 @@
           %button.btn#fake_submit
             Upload
           = f.submit :Upload, :class => "btn btn-warning", :id=>"true_submit"
+          .error-message
       %div#select-location
         %form#geocoding_form{:method=>"post"}
           %h4
@@ -100,12 +101,26 @@
             }
           });
         });
+        function invalid_inputs() {
+          if ($("#photo_title").attr("value") == "" || $("#photo_description").attr("value") == ""
+              || $("#photo_city").attr("value") == "" || $("#photo_state").attr("value") == "") {
+            return "Fill in all the inputs before submitting."
+          } else if ($("#photo_photo").attr("value") == ""){
+            return "Please upload a file."
+          } else {
+            return false;
+          }
+        }
         $("#fake_submit").click(function(e) {
           e.preventDefault();
-          $("#address").attr("value", $("#photo_city").attr("value") + ", " + $("#photo_state").attr("value"));
-          $("#geocoding_form").submit();
-          $("#select-location").css('visibility','visible');
-          $(".blackout").css('visibility','visible');
+          if (!invalid_inputs()) {
+            $("#address").attr("value", $("#photo_city").attr("value") + ", " + $("#photo_state").attr("value"));
+            $("#geocoding_form").submit();
+            $("#select-location").css('visibility','visible');
+            $(".blackout").css('visibility','visible');
+          } else {
+            $(".error-message").html(invalid_inputs());
+          }
         });
         $("#fake_submit2").click(function(e) {
           $("#latitude").val(lat);

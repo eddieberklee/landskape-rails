@@ -7,6 +7,10 @@ class UserController < ApplicationController
   def index
     get_and_store_username()
     get_users_photos(1)
+    if params[:success] != nil
+      @display_status = true;
+      @status = params[:success] ? "Uploaded photo successfully" : "Failed to upload photo. Try again."
+    end
   end
 
   def new
