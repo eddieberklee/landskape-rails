@@ -28,5 +28,18 @@ class LikesController < ApplicationController
     puts session[:current_user_id]
     puts User.find_by_id(session[:current_user_id])
   end
+
+  def add_like
+    if Like.where("user_id = ? AND photo_id = ?", params[:user_id], params[:photo_id]).first == nil
+      Like.create(params)
+      return true
+    else
+      Like.where("user_id = ? AND photo_id = ?", params[:user_id], params[:photo_id]).destroy_all
+      return false
+    end
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
   
 end
