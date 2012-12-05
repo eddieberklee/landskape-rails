@@ -1,9 +1,9 @@
 @import "bootstrap"
 @import "css3_mixins"
-@import "variables"
 @import "vspacer_num"
 @import "css3_mixins"
 
+$filters-background: #eee
 $green-text-color: #44aa22
 
 .error-message
@@ -116,6 +116,7 @@ $filters-text-font-size: 12.5px
 
 #filters-bar
   width: 890px
+  color: black
   //background-color: darken($filters-background,5%)
   background-color: #f5f5f5
   padding-top:    7px
@@ -283,14 +284,20 @@ $popup-padding-right: 10px
 .float-right
   float: right
 
+$beauty-back-green: #2A332A
+
 body
   // background-color: #fff
-  background-color: $filters-background
+  background-color: $beauty-back-green
+  color: white
+
 $green: #008800
+
 a
   color: $green
   &:hover
     color: darken($green, 15%)
+
 h3
   padding-left: 10px
 
