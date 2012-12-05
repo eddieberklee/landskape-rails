@@ -60,7 +60,6 @@
           %div.popup-location
             %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
               Berkeley, CA&nbsp;&nbsp;&nbsp;
-              %img{:src=>"#{root_url}/assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
           %div.popup-description
             "Beautiful lake with a nice view of the fall leaf colors."
           .vspacer15
@@ -89,11 +88,8 @@
           %img{:src=>"#{root_url}/assets/map.png"}
         .popup-right
           .map-pin{:style=>"cursor:pointer;"}
-            %img{:src=>"#{root_url}/assets/pin.png"}
-          .map-describe
-            Drag pin to update the landskape's location.
-            %a.btn.btn-warning#update-location{:style=>"width:130px;margin:0 auto;position:relative;top:100px;display:block;"}
-              Update Location
+          .map-describe{:style=>"color:#000;"}
+            Click on map to update pin's location.
     :javascript
       $(function() {
         lat = 0;
