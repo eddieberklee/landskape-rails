@@ -13,5 +13,6 @@ Landskape::Application.routes.draw do
 
   match "photos/search" => "photos#search_bar", :as => :photo_search
   match "likes/add_like" => "likes#add_like", :as => :add_like
+  match "photoinfo/:id" => "photos#photoinfo", :as => :photoinfo
 
 end

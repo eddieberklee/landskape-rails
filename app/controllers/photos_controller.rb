@@ -4,6 +4,20 @@ class PhotosController < ApplicationController
   def show
   end
 
+  def photoinfo
+    data = {}
+    photo = Photo.find_by_id(params[:id])
+    data[:comments] = photo.comments
+    data[:likes] = photo.likes.length
+    data[:large_photo] = photo.photo.url(:large)
+    data[:photo] = photo
+    data[:username] = User.find_by_id(photo.user_id).username
+    @ret = data.to_json
+    respond_to do |format|
+      format.json { render :json => @ret}
+    end
+  end
+
   def index
     get_and_store_username()
     get_pics_by_location(@user.latitude, @user.longitude, 0.1)
