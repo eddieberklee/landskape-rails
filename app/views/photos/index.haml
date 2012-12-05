@@ -98,19 +98,18 @@
           $.ajax({
             url: "#{add_like_path}",
             data: {
-              photo: photo_id,
-              user: "#{@user.id}"
+              photo_id: photo_id,
+              user_id: "#{@user.id}"
             }
-          }).done(function() {
-            $likebutton = $this.child(0).child(0)
+          }).done(function(data) {
+            alert(data);
+            likebutton = $this.child(0).child(0);
             klass = $likebutton.attr('class');
             if (klass == 'icon-thumbs-up') {
-              $likebutton.removeClasses();
-              $likebutton.addClass('icon-thumbs-down');
+              $likebutton.attr('class', 'icon-thumbs-down');
             }
             else {
-              $likebutton.removeClasses();
-              $likebutton.addClass('icon-thumbs-up');
+              $likebutton.attr('class', 'icon-thumbs-up');
             }
           });
         });
