@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(:version => 20121204010742) do
   end
 
   create_table "likes", :force => true do |t|
-    t.text     "user_id"
-    t.text     "photo_id"
+    t.integer  "user_id"
+    t.integer  "photo_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
-    t.text     "user_id"
+    t.integer  "user_id"
     t.text     "title"
     t.text     "city"
     t.text     "state"
