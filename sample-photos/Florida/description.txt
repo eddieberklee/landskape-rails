@@ -1,5 +1,11 @@
 Description of the photos:
 
-img_001: Miami Beach. Taken in Miami, Florida, United States
+img_001: Vero Beach. Taken in Indian River, Florida, United States
 
-img_002: Trees on a Landscape. Taken in Everglades National Park, Florida, United States
+img_002: Sunset in St. Augustine. Taken in St. Augustine, Florida, United States
+
+img_003: Sunrise Ft. Lauderdale. Taken in Ft. Lauderdale, Florida, United States
+
+img_004: North Miami Beach. Taken in Miami, Florida, United States
+
+img_005: Orlando Landscape. Taken in Orlando, Florida, United States

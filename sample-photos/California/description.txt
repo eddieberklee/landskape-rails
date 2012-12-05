@@ -1,11 +1,11 @@
 Description of the photos:
 
-img_001: Golden Gate Bridge. Taken in San Francisco, California, United States
+img_001: Tioga Lake California. Taken in Lee vining, California, United States
 
-img_002: Beautiful napa valley landscape. Taken in Napa, California, United States
+img_002: Hermosa Beach. Taken in Los Angeles, California, United States
 
-img_003: Aerial of snowy mountain landscape with frozen lake in Inyo National Forest. Taken in California, United States
+img_003: Sunset at the Marin headlands. Taken in Marin, California, United States
 
-img_004: Night view of San Francisco. Taken in San Francisco, California, United States
+img_004: Pigeon Point Lighthouse. Taken in South Coastside, California, United States
 
 img_005: Fall Landscape. Taken in Yosemite Park, California, United States

@@ -60,7 +60,7 @@ photos.push({ # #2
     :title => "Berkeley Landscape",
     :city => "Berkeley",
     :state => "California",
-    :description => "Landscape.",
+    :description => "Sunset on Weiss Lake.",
     :latitude => 38,
     :longitude => -122
 })
@@ -100,7 +100,7 @@ photos.push({ # #6
     :title => "Berkeley Landscape",
     :city => "Berkeley",
     :state => "California",
-    :description => "Panoramic View of Landscape and Mountain Range.",
+    :description => "River and mountains.",
     :latitude => 38,
     :longitude => -122
 })
@@ -120,7 +120,7 @@ photos.push({ # #8
             :title => "Berkeley Landscape",
             :city => "Berkeley",
             :state => "California",
-            :description => "Grand Canyon.",
+            :description => "Painted Desert.",
             :latitude => 38,
             :longitude => -122
             })
@@ -140,7 +140,7 @@ photos.push({ # #10
             :title => "Berkeley Landscape",
             :city => "Berkeley",
             :state => "California",
-            :description => "Grand Canyon National Park Landscape.",
+            :description => "Navajo Nation's Monument Valley Park.",
             :latitude => 38,
             :longitude => -122
             })
@@ -230,7 +230,7 @@ photos.push({ # #19
             :title => "New York City Landscape",
             :city => "New York City",
             :state => "New York",
-            :description => "Golden Gate Bridge.",
+            :description => "Tioga Lake California.",
             :latitude => 41,
             :longitude => -74
             })
@@ -240,7 +240,7 @@ photos.push({ # #20
             :title => "New York City Landscape",
             :city => "New York City",
             :state => "New York",
-            :description => "Beautiful napa valley landscape.",
+            :description => "Hermosa Beach.",
             :latitude => 41,
             :longitude => -74
             })
@@ -250,7 +250,7 @@ photos.push({ # #21
             :title => "New York City Landscape",
             :city => "New York City",
             :state => "New York",
-            :description => "Aerial of snowy mountain landscape with frozen lake in Inyo National Forest.",
+            :description => "Sunset at the Marin headlands.",
             :latitude => 41,
             :longitude => -74
             })
@@ -260,7 +260,7 @@ photos.push({ # #22
             :title => "New York City Landscape",
             :city => "New York City",
             :state => "New York",
-            :description => "Night view of San Francisco.",
+            :description => "Pigeon Point Lighthouse.",
             :latitude => 41,
             :longitude => -74
             })
@@ -296,51 +296,51 @@ photos.push({ # #25
             })
 photos.push({ # #26
             :user_id => 3,
-            :photo => File.open("sample-photos/Delaware/img_001.jpg"),
+            :photo => File.open("sample-photos/Florida/img_001.jpg"),
             :title => "Houston Landscape",
             :city => "Houston",
             :state => "Texas",
-            :description => "Sunrise at Cape Henlopen.",
+            :description => "Vero Beach.",
             :latitude => 30,
             :longitude => -95
             })
 photos.push({ # #27
             :user_id => 3,
-            :photo => File.open("sample-photos/Delaware/img_002.jpg"),
+            :photo => File.open("sample-photos/Florida/img_002.jpg"),
             :title => "Houston Landscape",
             :city => "Houston",
             :state => "Texas",
-            :description => "Industrial Sunset.",
+            :description => "Sunset in St. Augustine.",
             :latitude => 30,
             :longitude => -95
             })
 photos.push({ # #28
             :user_id => 3,
-            :photo => File.open("sample-photos/Delaware/img_003.jpg"),
+            :photo => File.open("sample-photos/Florida/img_003.jpg"),
             :title => "Houston Landscape",
             :city => "Houston",
             :state => "Texas",
-            :description => "Delaware River.",
+            :description => "Sunrise Ft. Lauderdale.",
             :latitude => 30,
             :longitude => -95
             })
 photos.push({ # #29
             :user_id => 3,
-            :photo => File.open("sample-photos/Florida/img_001.jpg"),
+            :photo => File.open("sample-photos/Florida/img_004.jpg"),
             :title => "Houston Landscape",
             :city => "Houston",
             :state => "Texas",
-            :description => "Miami Beach.",
+            :description => "North Miami Beach.",
             :latitude => 30,
             :longitude => -95
             })
 photos.push({ # #30
             :user_id => 3,
-            :photo => File.open("sample-photos/Florida/img_002.jpg"),
+            :photo => File.open("sample-photos/Florida/img_005.jpg"),
             :title => "Houston Landscape",
             :city => "Houston",
             :state => "Texas",
-            :description => "Trees on a Landscape.",
+            :description => "Orlando Landscape.",
             :latitude => 30,
             :longitude => -95
             })

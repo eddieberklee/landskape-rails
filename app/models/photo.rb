@@ -15,6 +15,6 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo,
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :path => "/:id/:filename",
+    :path => "/:id/:filename"
 
 end

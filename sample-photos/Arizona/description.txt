@@ -2,11 +2,11 @@ Description of the photos:
 
 img_001: Horse Shoe. Taken in Glen Canyon National Recreation Area, Marble Canyon, Arizona, United States
 
-img_002: Grand Canyon. Taken in Coconino, Arinoza, United States
+img_002: Painted Desert. Taken in Petrified Forest National Park, Arizona, United States
 
 img_003: Monument Valley. Taken in Arizona, United States
 
-img_004: Grand Canyon National Park Landscape. Taken in Arizona, United States
+img_004: Navajo Nation's Monument Valley Park. Taken in Kayenta, Arizona, United States
 
 img_005: Desert Landscape with Rock Formations in Monument Valley. Taken in Arizona, United States
 
