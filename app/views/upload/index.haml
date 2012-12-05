@@ -100,6 +100,10 @@
             }
           });
         });
+        $(".blackout").click(function() {
+          $(this).css('visibility','hidden');
+          $("#select-location").css('visibility','hidden');
+        });
         $("#fake_submit").click(function(e) {
           e.preventDefault();
           $("#select-location").css('visibility','visible');
