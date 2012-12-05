@@ -7,6 +7,11 @@
       Login
     = stylesheet_link_tag("style")
     = javascript_include_tag("application")
+    %script{:type=>"text/javascript", :src=>"http://maps.google.com/maps/api/js?sensor=true"}
+    %script{:type=>"text/javascript", :src=>"https://raw.github.com/HPNeo/gmaps/master/gmaps.js"}
+    %script{:type=>"text/javascript", :src=>"http://hpneo.github.com/gmaps/prettify/prettify.js"}
+    %link{:href=>"http://fonts.googleapis.com/css?family=Convergence|Bitter|Droid+Sans|Ubuntu+Mono", :rel=>"stylesheet", :type=>"text/css"}
+    %link{:href=>"http://hpneo.github.com/gmaps/prettify/prettify.css", :rel=>"stylesheet", :type=>"text/css"}
     :css
       body {
         background: url("assets/snowmountain.jpg") no-repeat center center fixed; 
@@ -16,6 +21,7 @@
         background-size: cover;
       }
   %body
+    .blackout
     .container
       .vspacer15
       .clear
@@ -28,7 +34,7 @@
           %h1.index-shadow
             Login
           /.vspacer15
-          %form#signup{:action=>"#{logins_path()}", :method=>"post", :style=>""}
+          %form.signup{:action=>"#{logins_path()}", :method=>"post", :style=>""}
             %fieldset
               If you already have an account, sign in!
               %hr
@@ -46,13 +52,15 @@
         %div.logindiv
           %h1.index-shadow
             Register
-          %form#signup{:action=>"#{logins_path()}", :method=>"post"}
+          %form.signup#register_form{:action=>"#{logins_path()}", :method=>"post"}
             %fieldset
               Sign up to view the content on the site.
               %hr
               - if defined? @signup_fail and @signup_fail
                 .error-message
                   #{@error_message}
+              %input#latitude{:type=>"hidden", :name=>"latitude"}
+              %input#longitude{:type=>"hidden", :name=>"longitude"}
               %input{:type=>"hidden", :name=>"user_auth_action", :value=>"signup"}
               %label{:for=>"username"}
                 Username
@@ -69,8 +77,82 @@
               %label{:for=>"bio"}
                 Bio
               %input{:type=>"text", :name=>"bio", :id=>"bio", :maxlength=>"50"}
-              %input.btn{:type=>"submit", :name=>"submit", :value=>"Register", :style=>"float: right;"}
+              %input.btn#register_button{:type=>"submit", :name=>"submit", :value=>"Register", :style=>"float: right;"}
+      %div#select-location
+        %form#geocoding_form{:method=>"post"}
+          %h4
+            Pinpoint a Location:
+          %div.input
+            %input#address{:type=>"text", :name=>"address"}
+            %button.btn#button{:type=>"submit"}
+              %i.icon-search
+            .clear
+        %div.popin
+          %div#map
+        %button.btn#fake_submit2
+          Register
 
     :javascript
+      $(function() {
+        lat = 0;
+        lon = 0;
+        prettyPrint();
+        map = new GMaps({
+          div: '#map',
+          lat: -12.043333,
+          lng: -77.028333
+        });
+        map.addListener('click', function(event) {
+          map.removeMarkers();
+          marker = map.addMarker({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+            title: "asdf",
+            infoWindow: {
+              content: "<p> HTML content</p>"
+            }
+          });
+          lat = event.latLng.lat();
+          lon = event.latLng.lng();
+        });
+        $('#geocoding_form').submit(function(e){
+          e.preventDefault();
+          GMaps.geocode({
+            address: $('#address').val().trim(),
+            callback: function(results, status){
+              if(status=='OK'){
+                var latlng = results[0].geometry.location;
+                map.setCenter(latlng.lat(), latlng.lng());
+                map.addMarker({
+                  lat: latlng.lat(),
+                  lng: latlng.lng()
+                });
+                lat = latlng.lat();
+                lng = latlng.lng();
+              }
+            }
+          });
+        });
+        $("#register_form").submit(function(e){
+          if (!true_submit) {
+            e.preventDefault();
+            $("#address").attr("value", $("#city").attr("value") + ", " + $("#state").attr("value"));
+            $("#geocoding_form").submit();
+            $("#select-location").css('visibility','visible');
+            $(".blackout").css('visibility','visible');
+          }
+        })
+        $(".blackout").click(function() {
+          $(this).css('visibility','hidden');
+          $("#select-location").css('visibility','hidden');
+        });
+        true_submit = false;
+        $("#fake_submit2").click(function(e) {
+          $("#latitude").val(lat);
+          $("#longitude").val(lon);
+          true_submit = true;
+          $("#register_button").click();
+        });
+      });
 
 
