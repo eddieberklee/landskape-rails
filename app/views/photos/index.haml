@@ -20,24 +20,28 @@
         %button
           Next Page
       %div.all_pictures
-        - @photos.each do |photo|
-          %div.pic-thumb-container{:style=>"position:relative;"}
-            %div.pic-thumb{:id=>"#{photo.id}"}
-              %img.pic{:src => "#{root_url}/#{photo.photo_file_file_name}", :class => "pic"}
-            %div.pic-thumb-descr2
-              %span{:style=>"margin:5px;"}
-                = photo.title
-            %div.pic-thumb-descr
-              %span{:style=>"margin:5px;font-size:0.95em;"}
-                @
-                = User.find_by_id(photo.user_id).username
-              %span.like-button{:id=>"#{photo.id}"}
-                %a.btn
-                  - if Like.where("user_id = ? AND photo_id = ?", photo.user_id, photo.id).first == nil
-                    %i.icon-thumbs-up
-                  - else
-                    %i.icon-thumbs-down
-              .clear
+        - if @photos.first != nil
+          - @photos.each do |photo|
+            %div.pic-thumb-container{:style=>"position:relative;"}
+              %div.pic-thumb{:id=>"#{photo.id}"}
+                %img.pic{:src => "#{root_url}/#{photo.photo_file_name}", :class => "pic"}
+              %div.pic-thumb-descr2
+                %span{:style=>"margin:5px;"}
+                  = photo.title
+              %div.pic-thumb-descr
+                %span{:style=>"margin:5px;font-size:0.95em;"}
+                  @
+                  = User.find_by_id(photo.user_id).username
+                %span.like-button{:id=>"#{photo.id}"}
+                  %a.btn
+                    - if Like.where("user_id = ? AND photo_id = ?", photo.user_id, photo.id).first == nil
+                      %i.icon-thumbs-up
+                    - else
+                      %i.icon-thumbs-down
+                .clear
+        - else
+          .error-message{:style=>"margin-top:10px;"}
+            No photos found.
       .clear
     .black-background#photo-popup-view
       .black-background-specific
