@@ -10,15 +10,14 @@
     .container
       = render :partial => "partial/topbar", :locals => {:user => @user}
       = render :partial => "partial/filters_bar"
-      = @photos
       %h3
         Viewing:
-        %span#viewing Photos Around Me
-      %div
-        %button
-          Previous Page
-        %button
-          Next Page
+        %span#viewing #{@viewing}
+      /%div
+      /  %button
+      /    Previous Page
+      /  %button
+      /    Next Page
       %div.all_pictures
         - if @photos.first != nil
           - @photos.each do |photo|
