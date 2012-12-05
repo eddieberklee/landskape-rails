@@ -24,11 +24,11 @@
         %div.pic-thumb-container{:style=>"position:relative;"}
           %div.pic-thumb#pic-1
             %div.pic-thumb-hover-content
-              %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+              %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
               %a.comment-button.btn.filters-text
                 comment
               .clear
-            %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
+            %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
           %div.pic-thumb-descr2
             %span{:style=>"margin:5px;"}
               Title Blah Blah
@@ -41,83 +41,83 @@
             .clear
         %div.pic-thumb#pic-2
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
         %div.pic-thumb#pic-3
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
 
       %div.column2
         %div.pic-thumb#pic-4
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
         %div.pic-thumb#pic-5
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
         %div.pic-thumb#pic-6
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+          %img.pic.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
 
       %div.column3
         %div.pic-thumb#pic-7
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/forest_path.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/forest_path.jpg", :class => "pic"}
         %div.pic-thumb#pic-8
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/lake_fall.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/lake_fall.jpg", :class => "pic"}
         %div.pic-thumb#pic-9
           %div.pic-thumb-hover-content
-            %img.heart{:src => "assets/heart_unselected.png", :class => "btn"}
+            %img.heart{:src => "#{root_url}/assets/heart_unselected.png", :class => "btn"}
             %a.comment-button.btn.filters-text
               comment
             .clear
-          %img.pic{:src => "assets/greenery.jpg", :class => "pic"}
+          %img.pic{:src => "#{root_url}/assets/greenery.jpg", :class => "pic"}
       .clear
     .black-background#photo-popup-view
       .black-background-specific
       .popup
         .popup-left
-          %img{:src=>"assets/lake_fall.jpg"}
+          %img{:src=>"#{root_url}/assets/lake_fall.jpg"}
         .popup-right
           %div.popup-username-like
             %div.popup-username
               %a{:href=>"/user", :style=>"font-size:1.1em;"}
                 amadeus
             %div.popup-like
-              %img.heart{:src=>"assets/heart_unselected.png"}
+              %img.heart{:src=>"#{root_url}/assets/heart_unselected.png"}
               %span.like-count
                 12
           %div.popup-location
             %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
               Berkeley, CA&nbsp;&nbsp;&nbsp;
-              %img{:src=>"assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
+              %img{:src=>"#{root_url}/assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
           %div.popup-description
             "Beautiful lake with a nice view of the fall leaf colors."
           .vspacer15
@@ -143,10 +143,10 @@
       .black-background-specific
       .popup
         .popup-left
-          %img{:src=>"assets/map.png"}
+          %img{:src=>"#{root_url}/assets/map.png"}
         .popup-right
           .map-pin{:style=>"cursor:pointer;"}
-            %img{:src=>"assets/pin.png"}
+            %img{:src=>"#{root_url}/assets/pin.png"}
           .map-describe
             Drag pin to update the landskape's location.
             %a.btn.btn-warning#update-location{:style=>"width:130px;margin:0 auto;position:relative;top:100px;display:block;"}

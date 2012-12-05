@@ -28,6 +28,10 @@ class UserController < ApplicationController
   def destroy
   end
 
+  #def search_bar
+  #  redirect_to :controller => "photos", :action => "search_bar", :latitude => params[:latitude], :longitude => params[:longitude]
+  #end
+
   def get_and_store_username
     @user = User.find_by_id(session[:current_user_id])
     if !@user

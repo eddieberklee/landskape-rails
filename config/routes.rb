@@ -11,4 +11,6 @@ Landskape::Application.routes.draw do
   resources :upload
   resources :user
 
+  match "photos/search" => "photos#search_bar", :as => :photo_search
+
 end
