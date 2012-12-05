@@ -63,8 +63,12 @@ $(function() {
     $("#viewing").text($(this).text());
   });
 
-
   $(".pic-thumb .pic").click(function() {
+    photo_id = $(this).attr('id');
+    $.ajax({
+      url: "",
+    }).done(function() {
+    });
     $("#photo-popup-view").show();
   });
   $(".comment-button").click(function() {
