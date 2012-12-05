@@ -331,10 +331,20 @@ $pic-thumb-height: 160px
   overflow: hidden
   margin-bottom: 24px
   cursor: pointer
-  @include css3-box-shadow(0px,0px,6px,rgba(0,0,0,0.35))
+  @include css3-box-shadow(0px,0px,7px,rgba(0,0,0,0.40))
   img.pic
     position: relative
     top: -30px
+.pic-thumb-alt1
+  height: $pic-thumb-height - 15px
+.pic-thumb-alt2
+  height: $pic-thumb-height - 7px
+.pic-thumb-alt3
+  height: $pic-thumb-height + 7px
+.pic-thumb-alt4
+  height: $pic-thumb-height + 15px
+.pic-thumb-alt5
+  height: $pic-thumb-height
 
 .pic-thumb-hover-content
   $h: 35px
