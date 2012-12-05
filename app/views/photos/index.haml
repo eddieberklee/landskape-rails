@@ -25,7 +25,6 @@
             %div.pic-thumb-container{:style=>"position:relative;"}
               %div.pic-thumb{:id=>"#{photo.id}"}
                 = image_tag photo.photo.url(), :class => "pic"
-                %img{:src=>"#{Rails.root}/public/system/photos/photos/000/000/#{"%03d" % photo.id}/original/#{photo.photo_file_name}", :class => "pic"}
               %div.pic-thumb-descr2
                 %span{:style=>"margin:5px;"}
                   = photo.title
