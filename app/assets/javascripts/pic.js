@@ -3,20 +3,20 @@ $(function() {
   // document.ready() opening
 
   t=150;
-  $(".pic-thumb").hover(
+  $(".pic-thumb-container").hover(
     function() {
-      $(this).siblings(".pic-thumb-descr").stop().animate({
+      $(this).children(".pic-thumb-descr").stop().animate({
         opacity: '1',
       },t);
-      $(this).siblings(".pic-thumb-descr2").stop().animate({
+      $(this).children(".pic-thumb-descr2").stop().animate({
         opacity: '1',
       },t);
     },
     function() {
-      $(this).siblings(".pic-thumb-descr").stop().animate({
+      $(this).children(".pic-thumb-descr").stop().animate({
         opacity: '0',
       },t);
-      $(this).siblings(".pic-thumb-descr2").stop().animate({
+      $(this).children(".pic-thumb-descr2").stop().animate({
         opacity: '0',
       },t);
       /*
