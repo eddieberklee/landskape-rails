@@ -21,24 +21,70 @@
       /    Next Page
       %div.all_pictures
         - if @photos.first != nil
-          - @photos.each do |photo|
-            %div.pic-thumb-container{:style=>"position:relative;"}
-              %div.pic-thumb{:id=>"#{photo.id}"}
-                = image_tag photo.photo.url(:small), :class => "pic"
-              %div.pic-thumb-descr2
-                %span{:style=>"margin:5px;"}
-                  = photo.title
-              %div.pic-thumb-descr
-                %span{:style=>"margin:5px;font-size:0.95em;"}
-                  @
-                  = User.find_by_id(photo.user_id).username
-                .like-button{:id=>"#{photo.id}"}
-                  %a.btn
-                    - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
-                      %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
-                    - else
-                      %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
-                .clear
+          - plength = @photos.length
+          - @photos_first = @photos[0..plength/3]
+          - @photos_second = @photos[plength/3+1..2*plength/3+1]
+          - @photos_third = @photos[2*plength/3+1..plength]
+          .column1{:style=>"margin-left:5px;"}
+            - @photos_first.each do |photo|
+              - r = rand(1..5)
+              %div.pic-thumb-container{:style=>"position:relative;"}
+                %div.pic-thumb{:id=>"#{photo.id}", :class=>"pic-thumb-alt#{r}"}
+                  = image_tag photo.photo.url(:small), :class => "pic"
+                %div.pic-thumb-descr2
+                  %span{:style=>"margin:5px;"}
+                    = photo.title
+                %div.pic-thumb-descr
+                  %span{:style=>"margin:5px;font-size:0.95em;"}
+                    @
+                    = User.find_by_id(photo.user_id).username
+                  .like-button{:id=>"#{photo.id}"}
+                    %a.btn
+                      - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
+                        %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
+                      - else
+                        %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
+                  .clear
+          .column2
+            - @photos_second.each do |photo|
+              - r = rand(1..5)
+              %div.pic-thumb-container{:style=>"position:relative;"}
+                %div.pic-thumb{:id=>"#{photo.id}", :class=>"pic-thumb-alt#{r}"}
+                  = image_tag photo.photo.url(:small), :class => "pic"
+                %div.pic-thumb-descr2
+                  %span{:style=>"margin:5px;"}
+                    = photo.title
+                %div.pic-thumb-descr
+                  %span{:style=>"margin:5px;font-size:0.95em;"}
+                    @
+                    = User.find_by_id(photo.user_id).username
+                  .like-button{:id=>"#{photo.id}"}
+                    %a.btn
+                      - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
+                        %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
+                      - else
+                        %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
+                  .clear
+          .column3
+            - @photos_third.each do |photo|
+              - r = rand(1..5)
+              %div.pic-thumb-container{:style=>"position:relative;"}
+                %div.pic-thumb{:id=>"#{photo.id}", :class=>"pic-thumb-alt#{r}"}
+                  = image_tag photo.photo.url(:small), :class => "pic"
+                %div.pic-thumb-descr2
+                  %span{:style=>"margin:5px;"}
+                    = photo.title
+                %div.pic-thumb-descr
+                  %span{:style=>"margin:5px;font-size:0.95em;"}
+                    @
+                    = User.find_by_id(photo.user_id).username
+                  .like-button{:id=>"#{photo.id}"}
+                    %a.btn
+                      - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
+                        %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
+                      - else
+                        %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
+                  .clear
         - else
           .error-message{:style=>"margin-top:10px;"}
             No photos found.
