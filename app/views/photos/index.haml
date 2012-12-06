@@ -46,7 +46,7 @@
     .black-background#photo-popup-view{:style => "z-index:-10;visibility:hidden;"}
       .black-background-specific
       .popup
-        .popup-left
+        .popup-left{:style=>"line-height:394px"}
           %img.picpic{:src=>"#{root_url}/assets/lake_fall.jpg"}
         .popup-right
           %div.popup-username-like
@@ -82,9 +82,9 @@
       .black-background-specific
       .popup.popin
         .popup-left
-          #map
+          #map.crazy
         .popup-right
-          %button.btn#go-to-photo-view
+          %button.btn#go-to-photo-view{:style=>"margin-top:10px;"}
             Go To Photo View
     :javascript
       $(function() {
