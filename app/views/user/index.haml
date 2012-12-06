@@ -40,9 +40,9 @@
                 %span.like-button{:id=>"#{photo.id}"}
                   %a.btn
                     - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
-                      %i.icon-thumbs-up
+                      %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
                     - else
-                      %i.icon-thumbs-down
+                      %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
                 .clear
         - else
           .error-message{:style=>"margin-top:10px;"}
@@ -72,18 +72,7 @@
           .vspacer15
           .hr-divider
           %div.popup-comment-box
-            .popup-comment
-              %span.popup-comment-username
-                %a{:href=>"/userchopin"}
-                  &nbsp;chopin:
-              %span.popup-comment-text
-                Looks inspiring for composing music!
-            .popup-comment
-              %span.popup-comment-username
-                %a{:href=>"/userliszt"}
-                  &nbsp;liszt:
-              %span.popup-comment-text
-                Red, yellow, orange colors look sick.
+            #comment-container
             %div.popup-comment-input
               %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
               %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
@@ -103,27 +92,72 @@
           lat: -12.043333,
           lng: -77.028333
         });
-        $("#photo-popup-view a.btn-mini").click(function() {
-          newtext = $(this).siblings("input[type='text']").val();
-          $(".popup-comment-box").append('<div class="popup-comment"><span class="popup-comment-username"><a>amadeus</a>: </span><span class="popup-comment-text">'+newtext+'</span></div>');
-        });
-        $(".pic-thumb-container .like-button").click(function() {
-          photo_id = $(this).attr('id');
-          likebutton = $(this);
+        $(".popup-like i").click(function() {
+          $likebutton = $(this);
           $.ajax({
             url: "/add_like",
             data: {
-              photo_id: photo_id,
-              user_id: "#{@user.id}"
+              action_name: "like",
+              action_data: {
+                photo_id: photo_id,
+                user_id: "#{@user.id}"
+              }
             },
             success: function(data) {
-              icon = likebutton.children().children()
-              klass = icon.attr('class');
-              if (klass == 'icon-thumbs-up') {
-                  icon.attr('class', 'icon-thumbs-down');
+              $icon = $likebutton
+              if (data.is_liked) {
+                  $icon.attr('class', 'icon-thumbs-down');
+                  $("#icon_" + photo_id).attr('class', 'icon-thumbs-down');
+                  $(".popup-like .like-count").html(parseInt($(".popup-like .like-count").html()) + 1);
               }
               else {
-                  icon.attr('class', 'icon-thumbs-up');
+                  $icon.attr('class', 'icon-thumbs-up');
+                  $("#icon_" + photo_id).attr('class', 'icon-thumbs-up');
+                  $(".popup-like .like-count").html(parseInt($(".popup-like .like-count").html()) - 1);
+              }
+            }
+          });
+        })
+        $("#photo-popup-view a.btn-mini").click(function() {
+          newtext = $(this).siblings("input[type='text']").val();
+          $(this).siblings("input[type='text']").val("");
+          $.ajax({
+            url: "/add_like",
+            data: {
+              action_name: "comment",
+              action_data: {
+                photo_id: photo_id,
+                comment_text: newtext,
+                user_id: #{@user.id}
+              }
+            },
+            success: function(data) {
+              if (data.commented) {
+                $(".popup-comment-box").append('<div class="popup-comment"><span class="popup-comment-username"><a>#{@user.username}</a>: </span><span class="popup-comment-text">'+newtext+'</span></div>');
+              }
+            }
+          });
+
+        });
+        $(".pic-thumb-container .like-button").click(function() {
+          photo_id = $(this).attr('id');
+          $likebutton = $(this);
+          $.ajax({
+            url: "/add_like",
+            data: {
+              action_name: "like",
+              action_data: {
+                photo_id: photo_id,
+                user_id: "#{@user.id}"
+              }
+            },
+            success: function(data) {
+              $icon = $likebutton.children().children()
+              if (data.is_liked) {
+                  $icon.attr('class', 'icon-thumbs-down');
+              }
+              else {
+                  $icon.attr('class', 'icon-thumbs-up');
               }
             }
           });
@@ -133,8 +167,12 @@
           photo_id = $(this).parent().attr('id');
           $.ajax({
             url: "#{root_path}photoinfo/" + photo_id,
+            data: {
+              user_id: #{@user.id}
+            },
             success: function(data) {
               comments_array = data["comments"];
+              comment_owners = data["comment_owners"];
               number_likes = data["likes"];
               large_photo_url = data["large_photo"];
               city = data["photo"]["city"];
@@ -153,20 +191,20 @@
                 lng: data["photo"]["longitude"]
               });
 
+              $(".popup-like i").attr('class', (!data.is_liked) ? "icon-thumbs-up" : "icon-thumbs-down");
               $(".popup-left .picpic").attr('src',large_photo_url);
               $(".popup-right .like-count").text(number_likes.toString());
               $(".popup-right .map-popup").text(city + ", " + state);
               $(".popup-right .popup-username a").text(username);
               $(".popup-right .popup-description").text(description);
-              $(".popup-right .popup-comment").html('');
-              for (i=0; i<comments_array.length; i++) {
-                $(".popup-right .popup-comment").append("<div class='popup-comment'" +
-                    "<span class='popup-comment-username'><a href=''>" +
-                    username + "</a></span>" +
-                    "<span class='popup-comment-text'>" +
-                    comments_array[i]["comment_text"] +
-                    "</span>");
+              $(".popup-right #comment-container").html('');
+              for (i in comments_array) {
+                $(".popup-right #comment-container").append(
+                  '<div class="popup-comment"><span class="popup-comment-username"><a>' +
+                  comment_owners[i] + '</a>: </span><span class="popup-comment-text">' +
+                  comments_array[i].comment_text + '</span></div>');
               }
+              console.log(comment_owners.length);
 
               $("#photo-popup-view").css("z-index", 10);
               $("#photo-popup-view").css("visibility", "visible");

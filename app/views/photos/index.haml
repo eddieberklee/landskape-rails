@@ -35,9 +35,9 @@
                 .like-button{:id=>"#{photo.id}"}
                   %a.btn
                     - if Like.where("user_id = ? AND photo_id = ?", @user.id.to_i, photo.id.to_i).first == nil
-                      %i.icon-thumbs-up
+                      %i.icon-thumbs-up{:id=>"icon_#{photo.id}"}
                     - else
-                      %i.icon-thumbs-down
+                      %i.icon-thumbs-down{:id=>"icon_#{photo.id}"}
                 .clear
         - else
           .error-message{:style=>"margin-top:10px;"}
@@ -93,6 +93,32 @@
           lat: -12.043333,
           lng: -77.028333
         });
+        $(".popup-like i").click(function() {
+          $likebutton = $(this);
+          $.ajax({
+            url: "/add_like",
+            data: {
+              action_name: "like",
+              action_data: {
+                photo_id: photo_id,
+                user_id: "#{@user.id}"
+              }
+            },
+            success: function(data) {
+              $icon = $likebutton
+              if (data.is_liked) {
+                  $icon.attr('class', 'icon-thumbs-down');
+                  $("#icon_" + photo_id).attr('class', 'icon-thumbs-down');
+                  $(".popup-like .like-count").html(parseInt($(".popup-like .like-count").html()) + 1);
+              }
+              else {
+                  $icon.attr('class', 'icon-thumbs-up');
+                  $("#icon_" + photo_id).attr('class', 'icon-thumbs-up');
+                  $(".popup-like .like-count").html(parseInt($(".popup-like .like-count").html()) - 1);
+              }
+            }
+          });
+        })
         $("#photo-popup-view a.btn-mini").click(function() {
           newtext = $(this).siblings("input[type='text']").val();
           $(this).siblings("input[type='text']").val("");
