@@ -1,5 +1,5 @@
 #filters-bar
-  %form{:action => "#{photos_path}", :id => "filter_form"}
+  %form{:action => "#{photos_path}", :id => "filter_form", :style=>"margin-bottom:0;"}
     %input{:type => "hidden", :id => "filter", :name =>"filter"}
     %input{:type => "submit", :style => "visibility: hidden", :id => "sub_but"}
     %div{:style => "float:left;margin-top:4px;margin-left:12px;margin-right:7px;"}
@@ -14,7 +14,8 @@
       .clear
   :javascript
     $(function() {
-      $(".filters-item").click(function() {
+      $(".filters-item").click(function(e) {
+        e.preventDefault();
         $("#filter").val($(this).html().trim());
         console.log($("#filter").val());
         $("#sub_but").click();
