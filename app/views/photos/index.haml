@@ -116,7 +116,7 @@
         });
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
-          likebutton = $(this);
+          $likebutton = $(this);
           $.ajax({
             url: "/add_like",
             data: {
@@ -132,7 +132,7 @@
                   icon.attr('class', 'icon-thumbs-down');
               }
               else {
-                  icon.attr('class', 'icon-thumbs-up');
+                  $icon.attr('class', 'icon-thumbs-up');
               }
             }
           });

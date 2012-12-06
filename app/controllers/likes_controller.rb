@@ -49,6 +49,10 @@ class LikesController < ApplicationController
         return render :json => {:commented => false}
       end
     end
+    respond_to do |format|
+      format.json { render :json => {:is_liked => answer.to_json} }
+    end
+    # return :json => {:success => true, :is_liked => answer}
   end
   
 end
