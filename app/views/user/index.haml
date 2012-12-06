@@ -48,11 +48,11 @@
           .error-message{:style=>"margin-top:10px;"}
             No photos found.
       .clear
-    .black-background#photo-popup-view
+    .black-background#photo-popup-view{:style => "z-index:-10;visibility:hidden;"}
       .black-background-specific
       .popup
         .popup-left
-          %img{:src=>"#{root_url}/assets/lake_fall.jpg"}
+          %img.picpic{:src=>"#{root_url}/assets/lake_fall.jpg"}
         .popup-right
           %div.popup-username-like
             %div.popup-username
@@ -64,8 +64,9 @@
                 12
           %div.popup-location
             %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
-              Berkeley, CA&nbsp;&nbsp;&nbsp;
-              %img{:src=>"#{root_url}/assets/pin.png", :style=>"float:right;position:relative;top:2px;left:-128px;width:15px;margin-right:2px;"}
+              Berkeley, CA
+            %button.btn#go-to-map-view
+              Go To Map View
           %div.popup-description
             "Beautiful lake with a nice view of the fall leaf colors."
           .vspacer15
@@ -87,20 +88,25 @@
               %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
               %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
                 comment
-    .black-background#map-popup-view
+    .black-background#map-popup-view{:style => "z-index:-10;visibility:hidden"}
       .black-background-specific
-      .popup
+      .popup.popin
         .popup-left
-          %img{:src=>"#{root_url}/assets/map.png"}
+          #map
         .popup-right
-          .map-pin{:style=>"cursor:pointer;"}
-            %img{:src=>"#{root_url}/assets/pin.png"}
-          .map-describe
-            Drag pin to update the landskape's location.
-            %a.btn.btn-warning#update-location{:style=>"width:130px;margin:0 auto;position:relative;top:100px;display:block;"}
-              Update Location
+          %button.btn#go-to-photo-view
+            Go To Photo View
     :javascript
       $(function() {
+        map = new GMaps({
+          div: '#map',
+          lat: -12.043333,
+          lng: -77.028333
+        });
+        $("#photo-popup-view a.btn-mini").click(function() {
+          newtext = $(this).siblings("input[type='text']").val();
+          $(".popup-comment-box").append('<div class="popup-comment"><span class="popup-comment-username"><a>amadeus</a>: </span><span class="popup-comment-text">'+newtext+'</span></div>');
+        });
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
           likebutton = $(this);
@@ -108,54 +114,63 @@
             url: "/add_like",
             data: {
               photo_id: photo_id,
-              user_id: "#{@user.id}",
+              user_id: "#{@user.id}"
             },
             success: function(data) {
               icon = likebutton.children().children()
               klass = icon.attr('class');
               if (klass == 'icon-thumbs-up') {
-                icon.attr('class', 'icon-thumbs-down');
+                  icon.attr('class', 'icon-thumbs-down');
               }
               else {
-                icon.attr('class', 'icon-thumbs-up');
+                  icon.attr('class', 'icon-thumbs-up');
               }
             }
           });
         });
+        var photo_id
         $(".pic-thumb-container .pic").click(function() {
           photo_id = $(this).parent().attr('id');
           $.ajax({
             url: "#{root_path}photoinfo/" + photo_id,
-          }).done(function(data) {
-            console.log(data);
+            success: function(data) {
+              comments_array = data["comments"];
+              number_likes = data["likes"];
+              large_photo_url = data["large_photo"];
+              city = data["photo"]["city"];
+              state = data["photo"]["state"];
+              description = data["photo"]["description"];
+              title = data["photo"]["title"];
+              username = data["username"];
 
-            comments_array = data["comments"];
-            number_likes = data["likes"];
-            large_photo_url = data["large_photo"];
-            city = data["photo"]["city"];
-            state = data["photo"]["state"];
-            description = data["photo"]["description"];
-            title = data["photo"]["title"];
-            username = data["username"]
+              map.removeMarkers();
+              map.setCenter(
+                data["photo"]["latitude"],
+                data["photo"]["longitude"]
+              );
+              map.addMarker({
+                lat: data["photo"]["latitude"],
+                lng: data["photo"]["longitude"]
+              });
 
-            $(".popup-left img").attr('src',large_photo_url);
-            $(".popup-right .like-count").text(number_likes.toString());
-            $(".popup-right .map-popup").text(city + ", " + state);
-            $(".popup-right .popup-username a").text(username);
-            $(".popup-right .popup-description").text(description);
-            $(".popup-right .popup-comment").html('');
-            for (i=0; i<comments_array.length; i++) {
-              $(".popup-right .popup-comment").append("<div class='popup-comment'" +
-                "<span class='popup-comment-username'><a href=''>" +
-                username + "</a></span>" +
-                "<span class='popup-comment-text'>" +
-                comments_array[i]["comment_text"] +
-                "</span>");
+              $(".popup-left .picpic").attr('src',large_photo_url);
+              $(".popup-right .like-count").text(number_likes.toString());
+              $(".popup-right .map-popup").text(city + ", " + state);
+              $(".popup-right .popup-username a").text(username);
+              $(".popup-right .popup-description").text(description);
+              $(".popup-right .popup-comment").html('');
+              for (i=0; i<comments_array.length; i++) {
+                $(".popup-right .popup-comment").append("<div class='popup-comment'" +
+                    "<span class='popup-comment-username'><a href=''>" +
+                    username + "</a></span>" +
+                    "<span class='popup-comment-text'>" +
+                    comments_array[i]["comment_text"] +
+                    "</span>");
+              }
+
+              $("#photo-popup-view").css("z-index", 10);
+              $("#photo-popup-view").css("visibility", "visible");
             }
           });
         });
       });
-
-
-
-

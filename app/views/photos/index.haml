@@ -91,21 +91,17 @@
         .popup-right
           %button.btn#go-to-photo-view
             Go To Photo View
-          -#.map-describe{:style=>"color:#000;"}
-          -#  Click on map to update pin's location.
     :javascript
-      $(document).ready(function() {
+      $(function() {
         map = new GMaps({
           div: '#map',
           lat: -12.043333,
-          lng: -77.028333,
+          lng: -77.028333
         });
-        map.addMarker({
-          lat: 20,
-          lng: 30,
+        $("#photo-popup-view a.btn-mini").click(function() {
+          newtext = $(this).siblings("input[type='text']").val();
+          $(".popup-comment-box").append('<div class="popup-comment"><span class="popup-comment-username"><a>amadeus</a>: </span><span class="popup-comment-text">'+newtext+'</span></div>');
         });
-        //$("#map").css('width','516px');
-        //$("#map").css('height','340px');
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
           likebutton = $(this);
@@ -113,31 +109,19 @@
             url: "/add_like",
             data: {
               photo_id: photo_id,
-              user_id: "#{@user.id}",
+              user_id: "#{@user.id}"
             },
             success: function(data) {
               icon = likebutton.children().children()
               klass = icon.attr('class');
               if (klass == 'icon-thumbs-up') {
-                icon.attr('class', 'icon-thumbs-down');
+                  icon.attr('class', 'icon-thumbs-down');
               }
               else {
-                icon.attr('class', 'icon-thumbs-up');
+                  icon.attr('class', 'icon-thumbs-up');
               }
             }
           });
-        });
-        $("#go-to-map-view").click(function() {
-          $("#map-popup-view").css("z-index", 10);
-          $("#photo-popup-view").css("z-index", -10);
-          $("#map-popup-view").css("visibility", "visible");
-          $("#photo-popup-view").css("visibility", "hidden");
-        });
-        $("#go-to-photo-view").click(function() {
-          $("#map-popup-view").css("z-index", -10);
-          $("#photo-popup-view").css("z-index", 10);
-          $("#map-popup-view").css("visibility", "hidden");
-          $("#photo-popup-view").css("visibility", "visible");
         });
         var photo_id
         $(".pic-thumb-container .pic").click(function() {
@@ -161,7 +145,7 @@
               );
               map.addMarker({
                 lat: data["photo"]["latitude"],
-                lng: data["photo"]["longitude"],
+                lng: data["photo"]["longitude"]
               });
 
               $(".popup-left .picpic").attr('src',large_photo_url);
@@ -172,21 +156,16 @@
               $(".popup-right .popup-comment").html('');
               for (i=0; i<comments_array.length; i++) {
                 $(".popup-right .popup-comment").append("<div class='popup-comment'" +
-                  "<span class='popup-comment-username'><a href=''>" +
-                  username + "</a></span>" +
-                  "<span class='popup-comment-text'>" +
-                  comments_array[i]["comment_text"] +
-                  "</span>");
+                    "<span class='popup-comment-username'><a href=''>" +
+                    username + "</a></span>" +
+                    "<span class='popup-comment-text'>" +
+                    comments_array[i]["comment_text"] +
+                    "</span>");
               }
 
               $("#photo-popup-view").css("z-index", 10);
               $("#photo-popup-view").css("visibility", "visible");
-            },
+            }
           });
         });
       });
-
-
-
-
-
