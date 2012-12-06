@@ -2,11 +2,16 @@ class UserController < ApplicationController
   protect_from_forgery
 
   def show
+    get_and_store_username()
+    @pages_user = User.find_by_username(params[:id])
+    get_users_photos(@pages_user.id)
+    return render :action => "index"
   end
 
   def index
     get_and_store_username()
-    get_users_photos(1)
+    @pages_user = @user
+    get_users_photos(@user.id)
     if params[:success] != nil
       @display_status = true;
       #@status = "Uploaded photo successfully";
@@ -40,8 +45,8 @@ class UserController < ApplicationController
     end
   end
 
-  def get_users_photos(page)
-    @photos = Photo.order("created_at DESC").where(:user_id => @user.id)
+  def get_users_photos(id)
+    @photos = Photo.order("created_at DESC").where(:user_id => id)
     if !@photos.first
       @photo_error = "No uploaded photos."
     end

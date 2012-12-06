@@ -15,12 +15,12 @@
           = @status
       -#= @photos
       %h3
-        #{@user.username}'s photos
+        #{@pages_user.username}'s photos
       %div{:style =>"font-size:14px;font-weight:bold;margin-left:15px"}
         %div{:style=>"padding-top: 0px; padding-bottom: 0px"}
-          More Info about #{@user.username}:
+          More Info about #{@pages_user.username}:
         .user-bio{:style => "height: 0px;"}
-          #{@user.bio}
+          #{@pages_user.bio}
         .show-bar{:style=>"position:relative;left:0px;margin-bottom:10px;"}
           .btn#showbutton
             show
@@ -171,44 +171,46 @@
               user_id: #{@user.id}
             },
             success: function(data) {
-              comments_array = data["comments"];
-              comment_owners = data["comment_owners"];
-              number_likes = data["likes"];
-              large_photo_url = data["large_photo"];
-              city = data["photo"]["city"];
-              state = data["photo"]["state"];
-              description = data["photo"]["description"];
-              title = data["photo"]["title"];
-              username = data["username"];
+                          comments_array = data["comments"];
+                          comment_owners = data["comment_owners"];
+                          number_likes = data["likes"];
+                          large_photo_url = data["large_photo"];
+                          city = data["photo"]["city"];
+                          state = data["photo"]["state"];
+                          description = data["photo"]["description"];
+                          title = data["photo"]["title"];
+                          username = data["username"];
 
-              map.removeMarkers();
-              map.setCenter(
-                data["photo"]["latitude"],
-                data["photo"]["longitude"]
-              );
-              map.addMarker({
-                lat: data["photo"]["latitude"],
-                lng: data["photo"]["longitude"]
-              });
+                          map.removeMarkers();
+                          map.setCenter(
+                            data["photo"]["latitude"],
+                            data["photo"]["longitude"]
+                          );
+                          map.addMarker({
+                            lat: data["photo"]["latitude"],
+                            lng: data["photo"]["longitude"]
+                          });
 
-              $(".popup-like i").attr('class', (!data.is_liked) ? "icon-thumbs-up" : "icon-thumbs-down");
-              $(".popup-left .picpic").attr('src',large_photo_url);
-              $(".popup-right .like-count").text(number_likes.toString());
-              $(".popup-right .map-popup").text(city + ", " + state);
-              $(".popup-right .popup-username a").text(username);
-              $(".popup-right .popup-description").text(description);
-              $(".popup-right #comment-container").html('');
-              for (i in comments_array) {
-                $(".popup-right #comment-container").append(
-                  '<div class="popup-comment"><span class="popup-comment-username"><a>' +
-                  comment_owners[i] + '</a>: </span><span class="popup-comment-text">' +
-                  comments_array[i].comment_text + '</span></div>');
-              }
-              console.log(comment_owners.length);
+                          $(".popup-like i").attr('class', (!data.is_liked) ? "icon-thumbs-up" : "icon-thumbs-down");
+                          $(".popup-left .picpic").attr('src',large_photo_url);
+                          $(".popup-right .like-count").text(number_likes.toString());
+                          $(".popup-right .map-popup").text(city + ", " + state);
+                          $(".popup-right .popup-username a").text(username);
+                          $(".popup-right .popup-username a").attr("href", "/user/" + username);
+                          $(".popup-right .popup-description").text(description);
+                          $(".popup-right #comment-container").html('');
+                          for (i in comments_array) {
+                            $(".popup-right #comment-container").append(
+                              '<div class="popup-comment"><span class="popup-comment-username"><a href="/user/' +
+                              comment_owners[i] + '">' +
+                              comment_owners[i] + '</a>: </span><span class="popup-comment-text">' +
+                              comments_array[i].comment_text + '</span></div>');
+                          }
+                          console.log(comment_owners.length);
 
-              $("#photo-popup-view").css("z-index", 10);
-              $("#photo-popup-view").css("visibility", "visible");
-            }
+                          $("#photo-popup-view").css("z-index", 10);
+                          $("#photo-popup-view").css("visibility", "visible");
+                        }
           });
         });
       });

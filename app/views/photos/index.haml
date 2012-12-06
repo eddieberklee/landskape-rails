@@ -197,11 +197,13 @@
               $(".popup-right .like-count").text(number_likes.toString());
               $(".popup-right .map-popup").text(city + ", " + state);
               $(".popup-right .popup-username a").text(username);
+              $(".popup-right .popup-username a").attr("href", "/user/" + username);
               $(".popup-right .popup-description").text(description);
               $(".popup-right #comment-container").html('');
               for (i in comments_array) {
                 $(".popup-right #comment-container").append(
-                  '<div class="popup-comment"><span class="popup-comment-username"><a>' +
+                  '<div class="popup-comment"><span class="popup-comment-username"><a href="/user/' +
+                  comment_owners[i] + '">' +
                   comment_owners[i] + '</a>: </span><span class="popup-comment-text">' +
                   comments_array[i].comment_text + '</span></div>');
               }
