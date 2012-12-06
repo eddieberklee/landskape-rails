@@ -31,15 +31,31 @@ class LikesController < ApplicationController
 
   def add_like
     answer = false
-    if Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).first == nil
-      if Like.create(:user_id => params[:user_id], :photo_id => params[:photo_id])
+
+    user_id = params[:user_id].to_i
+    photo_id = params[:photo_id].to_i
+
+    logger.debug(params[:user_id])
+
+    likes = Like.where(:user_id => user_id).where(:photo_id => photo_id).length
+
+    if likes == 0
+      logger.debug(Like.create(:user_id => user_id, :photo_id => photo_id))
+      @like = Like.create(:user_id => user_id, :photo_id => photo_id)
+      @like.save
+      logger.debug(@like)
+      if @like
         answer = true
       end
     else
-      Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).destroy_all
+      Like.where("user_id = ? AND photo_id = ?", user_id, photo_id).destroy_all
+      logger.debug('hiiiiii')
       answer = false
     end
-    return :json => {:success => true, :is_liked => answer}
+    respond_to do |format|
+      format.json { render :json => {:is_liked => answer.to_json} }
+    end
+    # return :json => {:success => true, :is_liked => answer}
   end
   
 end
