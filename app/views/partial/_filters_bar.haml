@@ -1,11 +1,22 @@
 #filters-bar
-  %div{:style => "float:left;margin-top:4px;margin-left:12px;margin-right:7px;"}
-    Navigate to: 
-  .filters-item.filters-text.underline
-    Photos Around Me
-  .filters-item.filters-text.underline
-    Recently Uploaded
-  .filters-item.filters-text.underline
-    Most Liked
-  .clear
+  %form{:action => "#{photos_path}", :id => "filter_form"}
+    %input{:type => "hidden", :id => "filter", :name =>"filter"}
+    %input{:type => "submit", :style => "visibility: hidden", :id => "sub_but"}
+    %div{:style => "float:left;margin-top:4px;margin-left:12px;margin-right:7px;"}
+      Navigate to:
+    .filters-item.filters-text.underline
+      Photos Around Me
+    .filters-item.filters-text.underline
+      Recently Uploaded
+    .filters-item.filters-text.underline
+      Most Liked
     .clear
+      .clear
+  :javascript
+    $(function() {
+      $(".filters-item").click(function() {
+        $("#filter").val($(this).html().trim());
+        console.log($("#filter").val());
+        $("#sub_but").click();
+      });
+    });

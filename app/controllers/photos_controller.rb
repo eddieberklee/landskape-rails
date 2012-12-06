@@ -27,8 +27,16 @@ class PhotosController < ApplicationController
 
   def index
     get_and_store_username()
-    get_pics_by_location(@user.latitude, @user.longitude, 0.1)
-    @viewing = "Photos Around Me"
+    if params[:filter] == "Recently Uploaded"
+      @photos = Photo.order("created_at DESC")
+      @viewing = "Recently Uploaded"
+    elsif params[:filter] == "Most Liked"
+      get_pics_by_location(@user.latitude, @user.longitude, 0.1)
+      @viewing = "Most Liked"
+    else
+      get_pics_by_location(@user.latitude, @user.longitude, 0.1)
+      @viewing = "Photos Around Me"
+    end
   end
 
   def new
