@@ -34,18 +34,6 @@ class PhotosController < ApplicationController
     flash[:notice] = "success upload"
     @photo = Photo.new(params[:photo])
     @photo.user_id = @user.id
-    #@photo.latitude = params[:photo][:latitude].to_f
-    #@photo.longitude = params[:photo][:longitude].to_f
-    puts "Latitude is", @photo.latitude
-    puts "Longitude is", @photo.longitude
-
-    puts "Photo is", @photo
-    puts "Valid: ", @photo.valid?
-    @photo.errors.each do |e|
-      puts "Error: ", e
-    end
-    puts "User_ID", @photo.user_id
-    #@photo.user = @user
     if @photo.save
       params[:success] = true
     else

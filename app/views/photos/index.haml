@@ -43,7 +43,7 @@
           .error-message{:style=>"margin-top:10px;"}
             No photos found.
       .clear
-    .black-background#photo-popup-view
+    .black-background#photo-popup-view{:style => "z-index:-10;visibility:hidden;"}
       .black-background-specific
       .popup
         .popup-left
@@ -59,7 +59,9 @@
                 12
           %div.popup-location
             %a.map-popup{:style=>"text-decoration:underline;cursor:pointer;"}
-              Berkeley, CA&nbsp;&nbsp;&nbsp;
+              Berkeley, CA
+            %button.btn#go-to-map-view
+              Go To Map View
           %div.popup-description
             "Beautiful lake with a nice view of the fall leaf colors."
           .vspacer15
@@ -81,16 +83,16 @@
               %input{:type=>"text", :style=>"width:170px;height:13px;font-size:0.7em;position:relative;top:2px;margin-left:7px;"}
               %a.btn.btn-mini{:style=>"position:relative;top:-3px;"}
                 comment
-    %div.popin{:style=>"visibility:hidden;"}
-      %div#map{:style=>"width:400px;"}
-      %div#map2
-    .black-background#map-popup-view
+    .black-background#map-popup-view{:style => "z-index:-10;visibility:hidden"}
       .black-background-specific
-      .popup
+      .popup.popin
         .popup-left
+          #map
         .popup-right
-          .map-describe{:style=>"color:#000;"}
-            Click on map to update pin's location.
+          %button.btn#go-to-photo-view
+            Go To Photo View
+          -#.map-describe{:style=>"color:#000;"}
+          -#  Click on map to update pin's location.
     :javascript
       $(document).ready(function() {
         map = new GMaps({
@@ -102,8 +104,8 @@
           lat: 20,
           lng: 30,
         });
-        $("#map").css('width','516px');
-        $("#map").css('height','340px');
+        //$("#map").css('width','516px');
+        //$("#map").css('height','340px');
         $(".pic-thumb-container .like-button").click(function() {
           photo_id = $(this).attr('id');
           likebutton = $(this);
@@ -125,37 +127,61 @@
             }
           });
         });
+        $("#go-to-map-view").click(function() {
+          $("#map-popup-view").css("z-index", 10);
+          $("#photo-popup-view").css("z-index", -10);
+          $("#map-popup-view").css("visibility", "visible");
+          $("#photo-popup-view").css("visibility", "hidden");
+        });
+        $("#go-to-photo-view").click(function() {
+          $("#map-popup-view").css("z-index", -10);
+          $("#photo-popup-view").css("z-index", 10);
+          $("#map-popup-view").css("visibility", "hidden");
+          $("#photo-popup-view").css("visibility", "visible");
+        });
+        var photo_id
         $(".pic-thumb-container .pic").click(function() {
           photo_id = $(this).parent().attr('id');
           $.ajax({
             url: "#{root_path}photoinfo/" + photo_id,
-          }).done(function(data) {
-            console.log(data);
+            success: function(data) {
+              comments_array = data["comments"];
+              number_likes = data["likes"];
+              large_photo_url = data["large_photo"];
+              city = data["photo"]["city"];
+              state = data["photo"]["state"];
+              description = data["photo"]["description"];
+              title = data["photo"]["title"];
+              username = data["username"];
 
-            comments_array = data["comments"];
-            number_likes = data["likes"];
-            large_photo_url = data["large_photo"];
-            city = data["photo"]["city"];
-            state = data["photo"]["state"];
-            description = data["photo"]["description"];
-            title = data["photo"]["title"];
-            username = data["username"]
+              map.removeMarkers();
+              map.setCenter(
+                data["photo"]["latitude"],
+                data["photo"]["longitude"]
+              );
+              map.addMarker({
+                lat: data["photo"]["latitude"],
+                lng: data["photo"]["longitude"],
+              });
 
-            $(".popup-left img.picpic").attr('src',large_photo_url);
-            $(".popup-right .like-count").text(number_likes.toString());
-            $(".popup-right .map-popup").text(city + ", " + state);
-            $(".popup-right .popup-username a").text(username);
-            $(".popup-right .popup-description").text(description);
-            $(".popup-right .popup-comment").html('');
-            for (i=0; i<comments_array.length; i++) {
-              $(".popup-right .popup-comment").append("<div class='popup-comment'" + 
-                "<span class='popup-comment-username'><a href=''>" + 
-                username + "</a></span>" + 
-                "<span class='popup-comment-text'>" + 
-                comments_array[i]["comment_text"] + 
-                "</span>");
-            }
-            console.log(data["photos"]);
+              $(".popup-left .picpic").attr('src',large_photo_url);
+              $(".popup-right .like-count").text(number_likes.toString());
+              $(".popup-right .map-popup").text(city + ", " + state);
+              $(".popup-right .popup-username a").text(username);
+              $(".popup-right .popup-description").text(description);
+              $(".popup-right .popup-comment").html('');
+              for (i=0; i<comments_array.length; i++) {
+                $(".popup-right .popup-comment").append("<div class='popup-comment'" +
+                  "<span class='popup-comment-username'><a href=''>" +
+                  username + "</a></span>" +
+                  "<span class='popup-comment-text'>" +
+                  comments_array[i]["comment_text"] +
+                  "</span>");
+              }
+
+              $("#photo-popup-view").css("z-index", 10);
+              $("#photo-popup-view").css("visibility", "visible");
+            },
           });
         });
       });
