@@ -127,9 +127,9 @@
               }
             },
             success: function(data) {
-              icon = likebutton.children().children()
+              $icon = $likebutton.children().children()
               if (data.is_liked) {
-                  icon.attr('class', 'icon-thumbs-down');
+                  $icon.attr('class', 'icon-thumbs-down');
               }
               else {
                   $icon.attr('class', 'icon-thumbs-up');
