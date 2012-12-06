@@ -8,12 +8,17 @@ class PhotosController < ApplicationController
     data = {}
     photo = Photo.find_by_id(params[:id])
     data[:comments] = photo.comments
+    data[:comment_owners] = []
+    photo.comments.each do |c|
+      data[:comment_owners] = (data[:comment_owners] << User.find_by_id(c.user_id).username)
+    end
     data[:likes] = photo.likes.length
     data[:large_photo] = photo.photo.url(:large)
     data[:photo] = photo
     get_pics_by_location(photo.latitude, photo.longitude, 0.1)
     data[:photos] = @photos
     data[:username] = User.find_by_id(photo.user_id).username
+    data[:is_liked] = Like.where("user_id = ? AND photo_id = ?", params[:user_id], photo.id).first != nil
     @ret = data.to_json
     respond_to do |format|
       format.json { render :json => @ret }

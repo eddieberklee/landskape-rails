@@ -30,16 +30,25 @@ class LikesController < ApplicationController
   end
 
   def add_like
-    answer = false
-    if Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).first == nil
-      if Like.create(:user_id => params[:user_id], :photo_id => params[:photo_id])
-        answer = true
-      end
-    else
-      Like.where("user_id = ? AND photo_id = ?", params[:user_id].to_i, params[:photo_id].to_i).destroy_all
+    if params[:action_name] == "like"
       answer = false
+      query = Like.where("user_id = ? AND photo_id = ?", params[:action_data][:user_id].to_i, params[:action_data][:photo_id].to_i)
+      if query.first == nil
+        if Like.create(params[:action_data])
+          answer = true
+        end
+      else
+        query.destroy_all
+        answer = false
+      end
+      return render :json => {:is_liked => answer}
+    elsif params[:action_name] == "comment"
+      if Comment.create(params[:action_data])
+        return render :json => {:commented => true}
+      else
+        return render :json => {:commented => false}
+      end
     end
-    return :json => {:success => true, :is_liked => answer}
   end
   
 end
