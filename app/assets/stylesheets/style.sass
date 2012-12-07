@@ -37,6 +37,13 @@ $inset-green-trans: rgba(51,68,51,0.9)
   background-color: rgba(0,0,0,0.3)
   visibility: hidden
 
+$beauty-back-green: #2A332A
+
+body
+  // background-color: #fff
+  background-color: lighten($beauty-back-green,10%)
+  color: white
+
 .pic-thumb-descr
   width: 100%
   height: 24px
@@ -46,7 +53,7 @@ $inset-green-trans: rgba(51,68,51,0.9)
   position: absolute
   bottom: 0px
   opacity: 0
-  @include css3-box-shadow(0,0,5px,rgba(0,0,0,0.4))
+  @include css3-box-shadow(0,1px,3px,rgba(0,0,0,0.2))
   .btn
     border: 1px solid black
     height: 10px
@@ -71,22 +78,25 @@ $inset-green-trans: rgba(51,68,51,0.9)
 
 $pic-thumb-width: 280px
 $pic-thumb-height: 160px
+$pic-thumb-width: $pic-thumb-width / 1.4
+$pic-thumb-height: $pic-thumb-height / 0.85
 
 .pic-thumb-container
   overflow: hidden
   width: $pic-thumb-width
   height: $pic-thumb-height
-  margin-bottom: 20px
+  margin-bottom: 10px
+  border: 2px solid rgba(0,0,0,0.0)
   @include css3-box-shadow(0px,0px,7px,rgba(0,0,0,0.40))
 
 .pic-thumb
-  width: $pic-thumb-width + 35px
-  height: $pic-thumb-height + 20px
+  width: $pic-thumb-width + 280px
+  height: $pic-thumb-height + 100px
   position: relative
   cursor: pointer
   img.pic
     position: relative
-    top: -30px
+    top: -80px
 
 .pic-thumb-alt1
   height: $pic-thumb-height - 35px
@@ -103,13 +113,13 @@ $pic-thumb-height: 160px
 .pic-thumb-alt7
   height: $pic-thumb-height + 13px
 .pic-thumb-alt8
-  height: $pic-thumb-height - 20px
+  height: $pic-thumb-height - 44px
 .pic-thumb-alt9
-  height: $pic-thumb-height + 20px
+  height: $pic-thumb-height + 44px
 .pic-thumb-alt10
-  height: $pic-thumb-height - 30px
+  height: $pic-thumb-height - 60px
 .pic-thumb-alt11
-  height: $pic-thumb-height + 30px
+  height: $pic-thumb-height + 5px
 
 .pic-thumb-hover-content
   $h: 35px
@@ -139,6 +149,10 @@ $pic-thumb-height: 160px
     float: right
     margin-right: 5px
     @include css3-border-radius(6px)
+
+.container-full
+  width: 100%
+  padding-left: 2%
 
 #select-location
   $w: 550px
@@ -364,13 +378,6 @@ $popup-padding-right: 10px
   text-decoration: underline
 .float-right
   float: right
-
-$beauty-back-green: #2A332A
-
-body
-  // background-color: #fff
-  background-color: $beauty-back-green
-  color: white
 
 $green: #008800
 
