@@ -44,8 +44,7 @@ $inset-green-trans: rgba(51,68,51,0.9)
   background-color: rgba(0,0,0,0.5)
   color: #eee
   position: absolute
-  // top: -20px
-  bottom: 25px
+  bottom: 0px
   opacity: 0
   @include css3-box-shadow(0,0,5px,rgba(0,0,0,0.4))
   .btn
@@ -65,9 +64,81 @@ $inset-green-trans: rgba(51,68,51,0.9)
     margin-left: 1px
     i
       top: -5px
+
 .pic-thumb-descr2
   @extend .pic-thumb-descr
   top: 0
+
+$pic-thumb-width: 280px
+$pic-thumb-height: 160px
+
+.pic-thumb-container
+  overflow: hidden
+  width: $pic-thumb-width
+  height: $pic-thumb-height
+  margin-bottom: 20px
+  @include css3-box-shadow(0px,0px,7px,rgba(0,0,0,0.40))
+
+.pic-thumb
+  width: $pic-thumb-width + 35px
+  height: $pic-thumb-height + 20px
+  position: relative
+  cursor: pointer
+  img.pic
+    position: relative
+    top: -30px
+
+.pic-thumb-alt1
+  height: $pic-thumb-height - 35px
+.pic-thumb-alt2
+  height: $pic-thumb-height - 25px
+.pic-thumb-alt3
+  height: $pic-thumb-height + 25px
+.pic-thumb-alt4
+  height: $pic-thumb-height + 35px
+.pic-thumb-alt5
+  height: $pic-thumb-height
+.pic-thumb-alt6
+  height: $pic-thumb-height - 13px
+.pic-thumb-alt7
+  height: $pic-thumb-height + 13px
+.pic-thumb-alt8
+  height: $pic-thumb-height - 20px
+.pic-thumb-alt9
+  height: $pic-thumb-height + 20px
+.pic-thumb-alt10
+  height: $pic-thumb-height - 30px
+.pic-thumb-alt11
+  height: $pic-thumb-height + 30px
+
+.pic-thumb-hover-content
+  $h: 35px
+  position: absolute
+  bottom: 0 - ($h + 5px)
+
+  padding-top: 5px
+
+  $pic-padding-right: 5px
+  width: $pic-thumb-width - $pic-padding-right
+  padding-right: $pic-padding-right
+
+  height: $h
+  z-index: 2
+  background-color: rgba(0,0,0,0.4)
+  img
+    float: right
+    padding-left:   5px
+    padding-right:  5px
+    padding-top:    6px
+    padding-bottom: 5px
+    &:active
+      background-color: desaturate(lighten(red,30%),10%)
+      position: relative
+      top: 1px
+  a
+    float: right
+    margin-right: 5px
+    @include css3-border-radius(6px)
 
 #select-location
   $w: 550px
@@ -197,6 +268,7 @@ $popup-right-bg-color: #eee
 $popup-padding-right: 10px
 .popup-left
   width: $popup-width * 0.65
+  overflow: hidden
 .popup-right
   padding: $popup-padding-right
   padding-top: 0
@@ -213,6 +285,7 @@ $popup-padding-right: 10px
     right: 5px
     top: -20px
     cursor: pointer
+
 .popup-location
   font-style: italic
   font-size: 0.9em
@@ -322,61 +395,6 @@ $container_width: 900px
 
 .column1,.column2,.column3
   float: left
-
-$pic-thumb-width: 280px
-$pic-thumb-height: 160px
-
-.pic-thumb
-  width: $pic-thumb-width
-  height: $pic-thumb-height
-  position: relative
-  overflow: hidden
-  margin-bottom: 24px
-  cursor: pointer
-  @include css3-box-shadow(0px,0px,7px,rgba(0,0,0,0.40))
-  img.pic
-    position: relative
-    top: -30px
-
-.pic-thumb-alt1
-  height: $pic-thumb-height - 22px
-.pic-thumb-alt2
-  height: $pic-thumb-height - 9px
-.pic-thumb-alt3
-  height: $pic-thumb-height + 9px
-.pic-thumb-alt4
-  height: $pic-thumb-height + 15px
-.pic-thumb-alt5
-  height: $pic-thumb-height
-
-.pic-thumb-hover-content
-  $h: 35px
-  position: absolute
-  bottom: 0 - ($h + 5px)
-
-  padding-top: 5px
-
-  $pic-padding-right: 5px
-  width: $pic-thumb-width - $pic-padding-right
-  padding-right: $pic-padding-right
-
-  height: $h
-  z-index: 2
-  background-color: rgba(0,0,0,0.4)
-  img
-    float: right
-    padding-left:   5px
-    padding-right:  5px
-    padding-top:    6px
-    padding-bottom: 5px
-    &:active
-      background-color: desaturate(lighten(red,30%),10%)
-      position: relative
-      top: 1px
-  a
-    float: right
-    margin-right: 5px
-    @include css3-border-radius(6px)
 
 #upload-inset
   margin: 0 auto
